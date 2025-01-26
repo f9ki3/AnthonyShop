@@ -15,21 +15,23 @@ $(document).ready(function () {
                     frozenItems.forEach((item) => {
                         const frozenHtml = `
                             <div class="col-6 col-md-3">
-                                <div>
-                                    <div class="product-img mb-2 rounded">
-                                        <img src="${item.image_path}" alt="${item.name}" class="rounded img-fluid">
-                                    </div>
-                                    <div class="product-desc text-start">
-                                        <p class="m-0 p-0">${item.name}</p>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <h5 class="fw-bold">PHP ${item.price}</h5>
-                                            <p>Stock ${item.quantity}</p>
+                                <a href="product.php?id=${item.id}" style="text-decoration: none; color: black">
+                                    <div>
+                                        <div class="product-img mb-2 rounded">
+                                            <img src="${item.image_path}" alt="${item.name}" class="rounded img-fluid">
                                         </div>
-                                        <button class="btn btn-dark w-100 mb-2">
-                                            <i class="bi bi-bag-plus me-2"></i> Add to Cart
-                                        </button>
+                                        <div class="product-desc text-start">
+                                            <p class="m-0 p-0">${item.name}</p>
+                                            <div class="d-flex flex-row justify-content-between">
+                                                <h5 class="fw-bold">PHP ${item.price}</h5>
+                                                <p>Stock ${item.quantity}</p>
+                                            </div>
+                                            <button class="btn btn-dark w-100 mb-2">
+                                                <i class="bi bi-bag-plus me-2"></i> Buy Now
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>`;
                         frozenContainer.append(frozenHtml);
                     });

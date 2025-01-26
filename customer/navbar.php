@@ -1,9 +1,12 @@
 <div style="width: 280px; height: 100vh;" class="navbar-responsive shadow bg-dark sticky-top">
-    <div class="d-flex pt-3 flex-row align-items-center">
+    <div class="d-flex pt-3 flex-row align-items-start">
         <img src="../static/img/logo.png" style="width: 70px; height: 60px" alt="">
-        <h4 class="text-light">Anthony's Shop</h4>
+        <div>
+        <h4 class="text-light" style="padding: none; margin: none">Anthony Melo's</h4>
+        <p style="font-size: 12px; color: white; padding: none; margin: none">Dress Chicken and Frozen Food</p>
+        </div>
     </div>
-    <hr class="m-3">
+    <hr class="m-3 text-light">
     <div class="list-group">
         <a href="/ADCF/customer/home.php" class="btn text-light text-start ms-3 me-3"><span><i class="bi fs-5 bi-house me-2"></i></span> Home</a>
 
@@ -21,12 +24,13 @@
             </div>
         </div>
         
-        <button class="btn text-light text-start ms-3 me-3 "><span><i class="bi fs-5 bi-cart me-2"></i></span> Cart
-            <span class=" badge rounded-pill bg-danger">
-                99+
-                <span class="visually-hidden">unread messages</span>
-            </span>
-        </button>
+        <a href="/ADCF/customer/cart.php" class="btn text-light text-start ms-3 me-3 position-relative">
+            <span><i class="bi fs-5 bi-cart me-2"></i> Cart</span>
+            <!-- Cart icon badge container -->
+            <div id="cart-icon-container" class="position-absolute top-0 end-0">
+            </div>
+        </a>
+
         <button class="btn text-light text-start ms-3 me-3"><span><i class="bi fs-5 bi-pass me-2"></i></span> My Orders</button>
         <button class="btn text-light text-start ms-3 me-3"><span><i class="bi fs-5 bi-power me-2"></i></span>Logout</button>
     </div>

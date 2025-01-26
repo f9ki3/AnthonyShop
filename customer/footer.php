@@ -4,3 +4,4 @@
 <script src="../static/js/chicken-8.js"></script>
 <script src="../static/js/frozen-8.js"></script>
 <script src="../static/js/grocery-8.js"></script>
+<script src="../static/js/counter.js"></script>
