@@ -87,6 +87,7 @@ $(document).ready(function () {
         localStorage.setItem('cart', JSON.stringify(cart));
 
         renderCartTable(); // Re-render the table with updated cart
+        renderCartBadge()
     });
 
     // Handle increment
