@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    const SHIPPING_FEE = 120; // Define the shipping fee
+
     // Function to fetch cart from localStorage
     function getCartFromLocalStorage() {
         return JSON.parse(localStorage.getItem('cart')) || [];
@@ -7,8 +9,8 @@ $(document).ready(function () {
     // Function to update quantity and total
     function updateQuantity(index, newQuantity) {
         let cart = getCartFromLocalStorage(); // Fetch cart data
-        
-        // Ensure quantity is within valid range
+
+        // Ensure quantity is within a valid range
         if (newQuantity < 1) {
             newQuantity = 1; // Set to minimum if less than 1
         } else if (newQuantity > cart[index].stocks) {
@@ -25,21 +27,44 @@ $(document).ready(function () {
         renderCartTable(); // Re-render the table with updated cart
     }
 
+    // Function to calculate totals and update DOM
+    function calculateTotals(cart) {
+        let subTotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0); // Total without shipping
+        let totalWithShipping = subTotal + SHIPPING_FEE; // Total with shipping
+
+        // Update totals in the DOM
+        $('#sub_total').text(`PHP ${subTotal.toFixed(2)}`);
+        $('#amount_total').text(`PHP ${totalWithShipping.toFixed(2)}`);
+    }
+
     // Function to render the cart table
     function renderCartTable() {
         let cart = getCartFromLocalStorage(); // Fetch the cart every time rendering
 
         // Get the tbody where cart items will be added
         let cartTable = $('#cart-table');
-        
+
         // Clear any existing rows
         cartTable.empty();
 
-        // Check if cart is empty
+        // Check if the cart is empty
         if (cart.length === 0) {
-            cartTable.append('<tr><td colspan="6" class="text-center">Your cart is empty.</td></tr>');
+            cartTable.append(`
+                <tr>
+                    <td colspan="6" class="text-center">
+                        <img src="../static/img/cart_empty.svg" alt="Cart Empty" style="width: 500px; height: auto; opacity: 90%">
+                        <p class="mt-5 mb-5">Your cart is empty. Add some items!</p>
+                    </td>
+                </tr>
+            `);
+            $('#delivery-div').css('display', 'none'); // Hide delivery div when cart is empty
+            $('#sub_total').text('PHP 0.00');
+            $('#amount_total').text('PHP 0.00');
             return;
         }
+
+        // Show the delivery div when there are items in the cart
+        $('#delivery-div').css('display', 'block');
 
         // Loop through each cart item and create a row
         cart.forEach((item, index) => {
@@ -51,9 +76,9 @@ $(document).ready(function () {
                         </div>
                     </td>
                     <td style="padding-top: 20px; padding-bottom: 20px; vertical-align: top;">
-                    <p style="padding: 0px; margin: 0px">PHP ${item.name}</p>
-                    <p style="padding: 0px; margin: 0px">PHP ${item.price.toFixed(2)}</p>
-                    <p style="padding: 0px; margin: 0px" class="text-success">Available: ${item.stocks}</p>
+                        <p style="padding: 0px; margin: 0px">${item.name}</p>
+                        <p style="padding: 0px; margin: 0px">PHP ${item.price.toFixed(2)}</p>
+                        <p style="padding: 0px; margin: 0px" class="text-success">Available: ${item.stocks}</p>
                     </td>
                     <td style="padding-top: 20px; padding-bottom: 20px; vertical-align: top;">
                         <div class="input-group" style="max-width: 150px;">
@@ -70,6 +95,9 @@ $(document).ready(function () {
             `;
             cartTable.append(row);
         });
+
+        // Calculate totals after rendering the cart
+        calculateTotals(cart);
     }
 
     // Initial render of the cart table
@@ -87,7 +115,6 @@ $(document).ready(function () {
         localStorage.setItem('cart', JSON.stringify(cart));
 
         renderCartTable(); // Re-render the table with updated cart
-        renderCartBadge()
     });
 
     // Handle increment

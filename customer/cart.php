@@ -32,7 +32,7 @@
             </div>
             
             <!-- Checkout Section -->
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4" id="delivery-div" style="display: none">
               <div class="container mt-4">
                 <div class="row g-3">
                   <h5>Delivery Information</h5>
@@ -69,46 +69,48 @@
                   <div class="col-12">
                     <label class="form-label">Select Payment Method</label>
                     <div class="d-flex flex-row justify-content-start border rounded p-2">
+                      <!-- Cash on Delivery Option -->
                       <div class="form-check me-3">
-                        <input class="form-check-input" type="radio" name="payment-method" id="cod" value="cod">
+                        <input class="form-check-input" type="radio" name="payment-method" id="cod" value="cod" checked>
                         <label class="form-check-label" for="cod">Cash on Delivery</label>
                       </div>
+
+                      <!-- G-Cash Option -->
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="payment-method" id="gcash" value="gcash">
                         <label class="form-check-label" for="gcash">G-Cash</label>
                       </div>
                     </div>
                   </div>
-
+                  
                   <!-- GCash QR Code -->
-                  <div class="col-12">
-                    <div class="d-flex justify-content-center align-items-center" style="height: 300px;">
-                      <div style="width: 300px; height: 300px;">
-                        <img class="img-fluid" style="object-fit: cover; width: 100%; height: 100%;" src="../static/img/gcash.jpg" alt="GCash QR Code">
+                  <div id="g-cash-div" style="display: none">
+                    <div class="col-12">
+                      <div class="d-flex justify-content-center align-items-center" style="height: 260px;">
+                        <div style="width: 250px; height: 250px;">
+                          <img class="img-fluid" style="object-fit: cover; width: 100%; height: 100%;" src="../static/img/gcash.jpg" alt="GCash QR Code">
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <!-- GCash Reference -->
-                  <div class="col-12">
-                    <input type="text" class="form-control" placeholder="Enter the GCash reference number">
+                    <!-- GCash Reference -->
+                    <div class="col-12">
+                      <input type="text" class="form-control" placeholder="Enter the GCash reference number">
+                    </div>
                   </div>
                 </div>
-
-                <hr>
-
                 <!-- Summary -->
-                <div class="d-flex justify-content-between">
+                <div class="d-flex mt-3 justify-content-between">
                   <p class="mb-0">Subtotal</p>
-                  <p class="mb-0">$124.99</p>
+                  <p class="mb-0" id="sub_total">₱ 0.00</p>
                 </div>
                 <div class="d-flex justify-content-between">
-                  <p class="mb-0">Shipping</p>
-                  <p class="mb-0">Enter shipping address</p>
+                  <p class="mb-0">Shipping Fee</p>
+                  <p class="mb-0">₱ 120.00</p>
                 </div>
                 <div class="d-flex justify-content-between mt-3">
                   <strong style="font-size: 1.5rem;">Total</strong>
-                  <p style="font-size: 1.5rem;"><span class="text-uppercase">PHP</span> 124.99</p>
+                  <p style="font-size: 1.5rem;" id="amount_total"><span class="text-uppercase">₱</span> 0.00</p>
                 </div>
 
                 <!-- Place Order Button -->
@@ -122,5 +124,6 @@
 
     <?php include 'footer.php'; ?>
     <script src="../static/js/cart-table.js"></script>
+    <script src="../static/js/select-payment.js"></script>
   </body>
 </html>
