@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
+    <title>Frozen Category</title>
     <?php include 'header.php';?>    
 </head>
   <body>
@@ -17,22 +17,15 @@
             </div>
         </div>
         <div class="row g-3 p-3 container">
-            <h3>Chicken Products</h3>
-            <div class="row" id="chicken-8">
-            </div>
-        </div>
-        <div class="row g-3 p-3 container">
-            <h3>Frozen Products</h3>
-            <div class="row" id="frozen-8"></div>
-        </div>
-        <div class="row g-3 p-3 container">
-            <h3>Grocery Products</h3>
-            <div class="row" id="grocery-8"></div>
+            <h3><a href="home.php" style="color: black; text-decoration: none">Products</a> / Frozen Products</h3>
+            <!-- Product Card 1 -->
+            <div class="row" id="frozen-page">
         </div>
     </div>
 </div>
 
 
   <?php include 'footer.php';?>
+  <script src="../static/js/frozen-page.js"></script>
 </body>
 </html>
