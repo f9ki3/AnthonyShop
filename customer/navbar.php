@@ -32,7 +32,8 @@
             </div>
         </a>
 
-        <button class="btn text-light text-start ms-3 me-3"><span><i class="bi fs-5 bi-pass me-2"></i></span> My Orders</button>
+        <a href="/ADCF/customer/my_order.php" class="btn text-light text-start ms-3 me-3"><span><i class="bi fs-5 bi-pass me-2"></i></span> My Orders</a>
+        <a href="/ADCF/customer/my_account.php" class="btn text-light text-start ms-3 me-3"><span><i class="bi fs-5 bi-file-person me-2"></i></span> My Account</a>
         <a href="logout.php" class="btn text-light text-start ms-3 me-3"><span><i class="bi fs-5 bi-power me-2"></i></span>Logout</a>
     </div>
 </div>

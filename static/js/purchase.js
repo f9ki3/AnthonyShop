@@ -75,4 +75,17 @@ function place_order(){
     }
 
     console.log(data)
+    $.ajax({
+        url: '../model/purchase.php',
+        method: 'POST',
+        contentType: 'application-json',
+        data: JSON.stringify(data),
+        success: function(response){
+            console.log(response)
+            if(response.status == 'success'){
+                localStorage.clear()
+                window.location.href='order_success.php'
+            }
+        },
+    })
 }
