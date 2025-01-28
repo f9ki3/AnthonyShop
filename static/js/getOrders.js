@@ -1,15 +1,15 @@
-let page = 1; // Initialize the current page
+let currentPage = 1; // Initialize the current page
 
 function fetchOrders() {
     $.ajax({
-        url: `../model/readOrders.php?page=${page}`, // Pass the current page as a query parameter
+        url: `../model/readOrders.php?page=${currentPage}`, // Pass the current page as a query parameter
         method: 'GET',
         contentType: 'application/json',
         success: function (response) {
             console.log(response);
 
             if (response.data && response.data.length > 0) {
-                let orderTable = document.getElementById('order-table'); // Target the table body
+                const orderTable = document.getElementById('order-table'); // Target the table body
 
                 // Clear existing table rows
                 orderTable.innerHTML = '';
@@ -17,7 +17,7 @@ function fetchOrders() {
                 // Loop through the response data and append rows dynamically
                 response.data.forEach(order => {
                     let row = `
-                        <tr style="border-top: 1px solid gainsboro;">
+                        <tr style="border-top: 1px solid gainsboro;" class="clickable-row" data-hash="${order.order_hash}">
                             <td style="padding-top: 20px; padding-bottom: 20px; vertical-align: top;">
                                 ${order.order_hash} <!-- Order Code -->
                             </td>
@@ -37,7 +37,7 @@ function fetchOrders() {
                                 <span style="color: ${getStatusColor(order.status)}">${order.status}</span> <!-- Status with color coding -->
                             </td>
                             <td style="padding-top: 20px; padding-bottom: 20px; vertical-align: top;">
-                                 ${order.status === 'pending' ? `<a href="../model/cancel.php?id=${order.order_hash}">Cancel</a>` : ''}
+                                ${order.status === 'pending' ? `<a href="../model/cancel.php?id=${order.order_hash}" class="cancel-link">Cancel</a>` : ''}
                             </td>
                         </tr>
                     `;
@@ -60,7 +60,6 @@ function fetchOrders() {
                         }
                     }
 
-
                     // Append the row to the table
                     orderTable.innerHTML += row;
                 });
@@ -69,8 +68,27 @@ function fetchOrders() {
                 const totalPages = response.total_pages;
 
                 // Enable/disable pagination buttons based on the current page and totalPages
-                document.getElementById('previous').disabled = page <= 1;
-                document.getElementById('next').disabled = page >= totalPages;
+                document.getElementById('previous').disabled = currentPage <= 1;
+                document.getElementById('next').disabled = currentPage >= totalPages;
+
+                // Add event listeners to each clickable row
+                const rows = document.querySelectorAll('.clickable-row');
+                rows.forEach(row => {
+                    row.style.cursor = 'pointer'; // Enable clickable cursor
+
+                    row.addEventListener('click', function() {
+                        const orderHash = this.getAttribute('data-hash');
+                        window.location.href = `my_transaction.php?id=${orderHash}`;
+                    });
+                });
+
+                // Prevent click event on row when "Cancel" link is clicked
+                const cancelLinks = document.querySelectorAll('.cancel-link');
+                cancelLinks.forEach(link => {
+                    link.addEventListener('click', function(event) {
+                        event.stopPropagation(); // Prevent the row click event
+                    });
+                });
             } else {
                 console.warn("No data available");
                 document.getElementById('order-table').innerHTML = `
@@ -87,8 +105,8 @@ function fetchOrders() {
 
 // Event listeners for pagination buttons
 document.getElementById('previous').addEventListener('click', () => {
-    if (page > 1) {
-        page--; // Decrement the page
+    if (currentPage > 1) {
+        currentPage--; // Decrement the page
         fetchOrders(); // Fetch the updated orders
     }
 });
@@ -97,8 +115,8 @@ document.getElementById('next').addEventListener('click', () => {
     // Dynamically set totalPages from the response
     const totalPages = 4; // Set this based on the response you get, e.g., response.total_pages
 
-    if (page < totalPages) {
-        page++; // Increment the page
+    if (currentPage < totalPages) {
+        currentPage++; // Increment the page
         fetchOrders(); // Fetch the updated orders
     }
 });

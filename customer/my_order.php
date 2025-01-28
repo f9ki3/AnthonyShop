@@ -16,7 +16,7 @@
             <!-- Cart Items -->
             <div id="cart-table-div" class="col-12">
               <h3>My Orders</h3>
-              <table class="table mt-3">
+              <table class="table table-hover mt-3">
                     <thead>
                         <tr>
                             <th scope="col" style="width: 10%;">Order Code</th>
