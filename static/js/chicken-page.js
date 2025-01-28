@@ -25,7 +25,7 @@ $(document).ready(function() {
                             <a href="product.php?id=${chicken.id}" style="text-decoration: none; color: black">
                                 <div>
                                     <div class="product-img mb-2 rounded">
-                                        <img src="${chicken.image_path}" alt="${chicken.name}" class="rounded img-fluid">
+                                        <img src="../static/img/${chicken.image_path}" alt="${chicken.name}" class="rounded img-fluid">
                                     </div>
                                     <div class="product-desc text-start">
                                         <p class="m-0 p-0">${chicken.name}</p>

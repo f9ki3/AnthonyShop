@@ -20,7 +20,7 @@ $(document).ready(function () {
                     var productHTML = `
                         <div class="col-12 col-md-6 pt-5">
                             <div class="border product-image-view rounded-4">
-                                <img src="${product.image_path}" alt="${product.name}" id="product-image" class="rounded-4 img-fluid">
+                                <img src="../static/img/${product.image_path}" alt="${product.name}" id="product-image" class="rounded-4 img-fluid">
                             </div>
                         </div>
                         <div class="col-12 col-md-6 pt-5">

@@ -18,7 +18,7 @@ $(document).ready(function () {
                                 <a href="product.php?id=${item.id}" style="text-decoration: none; color: black">
                                     <div>
                                         <div class="product-img mb-2 rounded">
-                                            <img src="${item.image_path}" alt="${item.name}" class="rounded img-fluid">
+                                            <img src="../static/img/${item.image_path}" alt="${item.name}" class="rounded img-fluid">
                                         </div>
                                         <div class="product-desc text-start">
                                             <p class="m-0 p-0">${item.name}</p>

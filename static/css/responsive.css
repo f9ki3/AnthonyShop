@@ -7,6 +7,19 @@
     width: 100%;
     height: 100%;
 }
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #ccc;
+  }
+  
+.bg-red{
+    background-color: rgb(174, 22, 22);
+}
+
+.bg-red:hover{
+    background-color: rgb(221, 40, 40);
+}
 
 .product-image-view{
     width: 500px;
