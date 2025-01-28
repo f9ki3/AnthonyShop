@@ -11,12 +11,7 @@
       <?php include 'navbar.php'; ?>
       <div class="d-flex flex-column flex-grow-1">
         <!-- Search bar -->
-        <div class="container g-3 p-3">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search products" aria-label="Search products" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-          </div>
-        </div>
+        <?php include 'search.php'; ?>
 
         <!-- Grocery Products -->
         <div class="container g-3 p-3">

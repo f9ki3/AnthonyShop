@@ -1,3 +1,4 @@
+<?php include 'session.php'?>
 <div style="width: 280px; height: 100vh;" class="navbar-responsive shadow bg-dark sticky-top">
     <div class="d-flex pt-3 flex-row align-items-start">
         <img src="../static/img/logo.png" style="width: 70px; height: 60px" alt="">
@@ -32,6 +33,6 @@
         </a>
 
         <button class="btn text-light text-start ms-3 me-3"><span><i class="bi fs-5 bi-pass me-2"></i></span> My Orders</button>
-        <button class="btn text-light text-start ms-3 me-3"><span><i class="bi fs-5 bi-power me-2"></i></span>Logout</button>
+        <a href="logout.php" class="btn text-light text-start ms-3 me-3"><span><i class="bi fs-5 bi-power me-2"></i></span>Logout</a>
     </div>
 </div>

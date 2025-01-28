@@ -31,6 +31,58 @@
     width: 100%;
     height: 100%;
 }
+.image-container {
+    display: inline-block;
+    position: relative;
+}
+.text-red{
+    color: rgb(174, 22, 22);
+}
+
+.is-invalid {
+    border-color: red;
+}
+
+
+.image-container img {
+    display: block;
+    position: relative;
+    filter: drop-shadow(5px 5px 10px rgba(53, 53, 53, 0.8)); /* Red shadow effect */
+}
+.nav-link-btn {
+    position: relative;
+    text-decoration: none; /* Remove default underline */
+    font-size: 20px;
+    color: rgb(145, 145, 145);
+    transition: font-size 0.3s, color 0.3s; /* Animate font size and color */
+  }
+  .nav-link-btn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgb(221, 40, 40);
+    transition: width 0.3s ease-in-out; /* Smooth underline animation */
+  }
+
+  .nav-link-btn:hover {
+    font-size: 20px;
+    color: rgb(221, 40, 40);
+  }
+
+  .nav-link-btn:hover::after {
+    width: 100%; /* Expand the underline */
+  }
+
+.text-gray{
+    color: rgb(145, 145, 145);
+}
+
+.footer-container{
+    background-color: rgb(174, 22, 22);
+}
 
 @media (max-width: 576px) {
     .navbar-responsive{

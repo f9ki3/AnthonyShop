@@ -10,12 +10,7 @@
     <div class="d-flex flex-row">
       <?php include 'navbar.php'; ?>
       <div class="d-flex flex-column flex-grow-1">
-        <div class="container g-3 p-3">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search products" aria-label="Search products" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-          </div>
-        </div>
+      <?php include 'search.php'; ?>
 
         <div class="container g-3 p-3">
           <h3>Chicken Products</h3>

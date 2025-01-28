@@ -10,6 +10,7 @@
     <div class="d-flex flex-row">
       <?php include 'navbar.php'; ?>
       <div class="d-flex flex-column flex-grow-1">
+      <?php include 'search.php'; ?>
         <div class="container p-3">
           <div class="row g-3">
             <!-- Cart Items -->
@@ -40,29 +41,32 @@
                   <div class="d-flex flex-row gap-3">
                     <div class="flex-fill">
                       <label for="firstname" class="form-label">First Name</label>
-                      <input type="text" id="firstname" class="form-control">
+                      <input type="text" value="<?php echo $_SESSION['fname']; ?>" id="firstname" class="form-control">
                     </div>
                     <div class="flex-fill">
                       <label for="lastname" class="form-label">Last Name</label>
-                      <input type="text" id="lastname" class="form-control">
+                      <input type="text" value="<?php echo $_SESSION['lname']; ?>" id="lastname" class="form-control">
                     </div>
                   </div>
+
                   <div class="d-flex flex-row gap-3">
                     <div class="flex-fill">
-                      <label for="firstname" class="form-label">Contact</label>
-                      <input type="text" id="firstname" class="form-control">
+                      <label for="contact" class="form-label">Contact</label>
+                      <input type="text" value="<?php echo $_SESSION['contact']; ?>" id="contact" class="form-control">
                     </div>
                     <div class="flex-fill">
-                      <label for="lastname" class="form-label">Email</label>
-                      <input type="text" id="lastname" class="form-control">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" value="<?php echo $_SESSION['email']; ?>" id="email" class="form-control">
                     </div>
                   </div>
+
                   <div class="d-flex flex-row gap-3">
                     <div class="flex-fill">
-                      <label for="firstname" class="form-label">Address</label>
-                      <input type="text" id="firstname" class="form-control">
+                      <label for="address" class="form-label">Complete Address</label>
+                      <input type="text" value="<?php echo $_SESSION['address']; ?>" id="address" class="form-control">
                     </div>
                   </div>
+
 
 
                   <!-- Payment Method -->
