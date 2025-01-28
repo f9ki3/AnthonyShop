@@ -22,6 +22,11 @@
           <div class="row" id="product-container">
             <!-- Dynamically loaded products will appear here -->
           </div>
+
+          <h3 style="margin-top: 100px" class="mb-5">Suggested Products</h3>
+          <div class="row" id="suggestion">
+            <!-- suggestion product cards will be dynamically inserted here -->
+          </div>
         </div>
       </div>
     </div>
@@ -29,5 +34,6 @@
     <?php include 'footer.php';?>
     <script src="../static/js/product.js"></script>
     <script src="../static/js/add-cart.js"></script>
+    <script src="../static/js/suggestion.js"></script>
   </body>
 </html>
