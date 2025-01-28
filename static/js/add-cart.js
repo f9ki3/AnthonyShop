@@ -7,6 +7,7 @@ $(document).ready(function () {
         let price = parseFloat($('h1:contains("PHP")').text().replace('PHP', '').trim()); // Price
         let imgPath = $('#product-image').attr('src'); // Image path (assuming there's an image with id="product-image")
         let stocks = parseInt($('#stocks').text().replace(/\D/g, '')); // Removes all non-digit characters
+        let id = $('#product-id').val()
         
         // Create an object for the product
         let product = {
@@ -15,7 +16,8 @@ $(document).ready(function () {
             price: price,
             total: (quantity * price).toFixed(2), // Calculate total price
             img: imgPath, // Add image path to the product object,
-            stocks: stocks
+            stocks: stocks,
+            id: id
         };
 
         // Check if there's an existing cart in localStorage

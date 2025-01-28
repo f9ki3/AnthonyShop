@@ -14,7 +14,7 @@
         <div class="container p-3">
           <div class="row g-3">
             <!-- Cart Items -->
-            <div class="col-12 col-md-8">
+            <div id="cart-table-div" class="col-12 col-md-8">
               <h3>My Cart</h3>
               <table class="table mt-3">
                 <thead>
@@ -99,26 +99,38 @@
 
                     <!-- GCash Reference -->
                     <div class="col-12">
-                      <input type="text" class="form-control" placeholder="Enter the GCash reference number">
+                      <input id="reference" type="text" class="form-control" placeholder="Enter the GCash reference number">
                     </div>
                   </div>
                 </div>
                 <!-- Summary -->
                 <div class="d-flex mt-3 justify-content-between">
                   <p class="mb-0">Subtotal</p>
-                  <p class="mb-0" id="sub_total">₱ 0.00</p>
-                </div>
-                <div class="d-flex justify-content-between">
-                  <p class="mb-0">Shipping Fee</p>
-                  <p class="mb-0">₱ 120.00</p>
-                </div>
-                <div class="d-flex justify-content-between mt-3">
-                  <strong style="font-size: 1.5rem;">Total</strong>
-                  <p style="font-size: 1.5rem;" id="amount_total"><span class="text-uppercase">₱</span> 0.00</p>
+                  <div class="d-flex align-items-center">
+                    <span class="text-uppercase fs-5">₱</span>
+                    <p class="mb-0 fs-5" id="sub_total">0.00</p>
+                  </div>
                 </div>
 
+                <div class="d-flex justify-content-between mt-2">
+                  <p class="mb-0">Shipping Fee</p>
+                  <div class="d-flex align-items-center">
+                    <span class="text-uppercase fs-5">₱</span>
+                    <p id="shipping" class="mb-0 fs-5">120.00</p>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-3">
+                  <strong class="fs-5">Total</strong>
+                  <div class="d-flex align-items-center">
+                    <span class="text-uppercase fw-bolder fs-5">₱</span>
+                    <p class="mb-0 fs-4 fw-bolder" id="amount_total">0.00</p>
+                  </div>
+                </div>
+
+
                 <!-- Place Order Button -->
-                <button class="btn w-100 btn-dark mt-3">Place Order</button>
+                <button onclick="place_order()" id="purchase-btn" class="btn w-100 btn-dark mt-3">Place Order</button>
               </div>
             </div>
           </div>
@@ -129,5 +141,6 @@
     <?php include 'footer.php'; ?>
     <script src="../static/js/cart-table.js"></script>
     <script src="../static/js/select-payment.js"></script>
+    <script src="../static/js/purchase.js"></script>
   </body>
 </html>

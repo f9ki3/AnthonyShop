@@ -33,8 +33,8 @@ $(document).ready(function () {
         let totalWithShipping = subTotal + SHIPPING_FEE; // Total with shipping
 
         // Update totals in the DOM
-        $('#sub_total').text(`PHP ${subTotal.toFixed(2)}`);
-        $('#amount_total').text(`PHP ${totalWithShipping.toFixed(2)}`);
+        $('#sub_total').text(`${subTotal.toFixed(2)}`);
+        $('#amount_total').text(`${totalWithShipping.toFixed(2)}`);
     }
 
     // Function to render the cart table
@@ -58,8 +58,10 @@ $(document).ready(function () {
                 </tr>
             `);
             $('#delivery-div').css('display', 'none'); // Hide delivery div when cart is empty
-            $('#sub_total').text('PHP 0.00');
-            $('#amount_total').text('PHP 0.00');
+            $('#sub_total').text('₱ 0.00');
+            $('#amount_total').text('₱ 0.00');
+            $('#cart-table-div').removeClass('col-md-8');
+
             return;
         }
 
@@ -77,7 +79,7 @@ $(document).ready(function () {
                     </td>
                     <td style="padding-top: 20px; padding-bottom: 20px; vertical-align: top;">
                         <p style="padding: 0px; margin: 0px">${item.name}</p>
-                        <p style="padding: 0px; margin: 0px">PHP ${item.price.toFixed(2)}</p>
+                        <p style="padding: 0px; margin: 0px">₱  ${item.price.toFixed(2)}</p>
                         <p style="padding: 0px; margin: 0px" class="text-success">Available: ${item.stocks}</p>
                     </td>
                     <td style="padding-top: 20px; padding-bottom: 20px; vertical-align: top;">
@@ -87,7 +89,7 @@ $(document).ready(function () {
                             <button class="btn btn-outline-secondary increment" type="button" data-index="${index}">+</button>
                         </div>
                     </td>
-                    <td style="padding-top: 20px; padding-bottom: 20px; vertical-align: top;">PHP ${(item.price * item.quantity).toFixed(2)}</td>
+                    <td style="padding-top: 20px; padding-bottom: 20px; vertical-align: top;">₱  ${(item.price * item.quantity).toFixed(2)}</td>
                     <td style="padding-top: 20px; padding-bottom: 20px; vertical-align: top;">
                         <button class="btn btn-outline-danger btn-sm remove-item" data-index="${index}"> <i class="bi bi-trash3 me-1"></i>Remove</button>
                     </td>
