@@ -9,7 +9,7 @@
     </div>
     <hr class="m-3 text-light">
     <div class="list-group">
-        <a href="/ADCF/admin/home.php" class="btn text-light text-start ms-3 me-3">
+        <a href="/ADCF/admin/index.php" class="btn text-light text-start ms-3 me-3">
             <i class="bi fs-5 bi-house-door me-2"></i> Dashboard
         </a>
         <a href="/ADCF/admin/products.php" class="btn text-light text-start ms-3 me-3">

@@ -1,7 +1,21 @@
 $(document).ready(function () {
+    // Handle the button click event
     $(".btn.bg-red").click(function (e) {
         e.preventDefault(); // Prevent form submission
 
+        handleLogin(); // Call the login function
+    });
+
+    // Handle the Enter key press in email or password fields
+    $("#floatingEmail, #floatingPassword").keydown(function (e) {
+        if (e.key === "Enter") { // Check if Enter key is pressed
+            e.preventDefault(); // Prevent form submission
+            handleLogin(); // Call the login function
+        }
+    });
+
+    // Function to handle login process
+    function handleLogin() {
         let email = $("#floatingEmail").val().trim();
         let password = $("#floatingPassword").val().trim();
         let errorDiv = $("#error-login");
@@ -30,5 +44,5 @@ $(document).ready(function () {
                 errorDiv.text("Something went wrong. Please try again.").show();
             }
         });
-    });
+    }
 });
