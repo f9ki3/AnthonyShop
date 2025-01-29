@@ -1,33 +1,30 @@
 <?php 
 session_start();
-session_unset(); // Unset all session variables
-session_destroy(); // Destroy the existing session
+session_unset(); // Unset all session variables (clears previous session)
 
-session_start(); // Start a new session
+// Include the database connection
 include 'connection.php';
 
 // Get the raw POST data
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
-// Validate and sanitize the email and password
-$email = isset($data['email']) ? trim($data['email']) : '';
-$password = isset($data['password']) ? trim($data['password']) : ''; // Don't hash the password here
+// Validate and sanitize input
+$email = isset($data['email']) ? filter_var(trim($data['email']), FILTER_SANITIZE_EMAIL) : '';
+$password = isset($data['password']) ? trim($data['password']) : ''; // Don't hash it here
 
-// Sanitize the email to avoid potential security issues
-$email = filter_var($email, FILTER_SANITIZE_EMAIL);
-
-// Check if email and password are provided
+// Ensure both email and password are provided
 if (empty($email) || empty($password)) {
     echo json_encode(['success' => false, 'message' => 'Email and password are required']);
     exit();
 }
 
-// Prepare SQL query to check if the email exists
-$sql = "SELECT * FROM customer WHERE email = ?";
+// Prepare the SQL statement
+$sql = "SELECT * FROM admin WHERE email = ?";
 $stmt = $conn->prepare($sql);
+
 if (!$stmt) {
-    echo json_encode(['success' => false, 'message' => 'Database query preparation failed']);
+    echo json_encode(['success' => false, 'message' => 'Database error: ' . $conn->error]);
     exit();
 }
 
@@ -40,8 +37,8 @@ if ($result->num_rows > 0) {
     $user = $result->fetch_assoc();
 
     // Verify the password
-    if (password_verify($password, $user['password'])) { // Use raw password here
-        // Store user data in session if password matches
+    if (password_verify($password, $user['password'])) {
+        // Store user data in the session
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['email'] = $user['email'];
@@ -49,19 +46,20 @@ if ($result->num_rows > 0) {
         $_SESSION['lname'] = $user['lname'];
         $_SESSION['address'] = $user['address'];
         $_SESSION['contact'] = $user['contact'];
+        $_SESSION['role'] = $user['role'];
 
-        // Send success response
+        // Send a success response
         echo json_encode(['success' => true, 'message' => 'Login successful']);
     } else {
-        // Send failure response if password doesn't match
+        // Incorrect password
         echo json_encode(['success' => false, 'message' => 'Incorrect password']);
     }
 } else {
-    // Send failure response if email is not found
+    // Email not found
     echo json_encode(['success' => false, 'message' => 'Incorrect email']);
 }
 
-// Close the statement and the database connection
+// Close the statement and database connection
 $stmt->close();
 $conn->close();
 ?>

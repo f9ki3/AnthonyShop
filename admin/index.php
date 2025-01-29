@@ -1,3 +1,6 @@
+<?php include 'session_public.php'?>
+
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -32,6 +35,6 @@
 </div>
 
 <?php include 'footer.php'?> 
-<script src="static/js/login.js"></script>
+<script src="../static/js/login_admin.js"></script>
 </body>
 </html>
