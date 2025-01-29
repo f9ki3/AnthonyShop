@@ -39,7 +39,7 @@ $(document).ready(function () {
         localStorage.setItem('cart', JSON.stringify(cart));
 
         // Notify the user
-        alert(`Added to Cart:\nName: ${product.name}\nQuantity: ${product.quantity}\nPrice: PHP ${product.price.toFixed(2)}\nTotal: PHP ${product.total}`);
+        alert(`${product.name} added to cart!`);
 
         // Call renderCartBadge to update the cart badge
         renderCartBadge();

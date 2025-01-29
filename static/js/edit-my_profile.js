@@ -142,8 +142,45 @@ $(document).ready(function() {
     // Save button click handler
     $('#save-change-password').on('click', function() {
       if (validateFields()) {
-        // Perform save action here
-        alert('Password changed successfully!');
+        let password = $('#current-password').val()
+        let new_password = $('#new-password').val()
+
+        // Prepare the data to send to the PHP script
+        var data = {
+          password: password,      // Current password
+          new_password: new_password // New password
+        };
+
+        $.ajax({
+          url: '../model/update_password.php',  // PHP script to update the password
+          method: 'POST',
+          data: JSON.stringify(data),          // Send data as JSON
+          contentType: 'application/json',
+          success: function(response){
+            // Log the response to the console (for debugging)
+            console.log(response);
+
+            // Parse the response if it's a JSON string
+            var responseObj = JSON.parse(response);
+
+            // Check if the response contains a success or error message
+            if (responseObj.success) {
+              // Show success message in an alert
+              alert(responseObj.success);
+
+              // Reload the page after successful update
+              location.reload();
+            } else if (responseObj.error) {
+              // Show error message in an alert
+              alert(responseObj.error);
+            }
+          },
+          error: function(error) {
+            console.log('Error:', error);
+            alert('An error occurred while updating the password!');
+          }
+        });
+
       }
     });
 
