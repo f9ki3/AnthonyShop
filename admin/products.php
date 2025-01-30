@@ -50,7 +50,7 @@
                   <th scope="col" style="width: 10%;">Price</th>
                   <th scope="col" style="width: 10%;">QTY</th>
                   <th scope="col" style="width: 10%;">Category</th>
-                  <th scope="col" style="width: 10%;">Action</th>
+                  <th scope="col" class="text-end" style="width: 30%;">Action</th>
                 </tr>
               </thead>
               <tbody id="order-table">
@@ -74,60 +74,84 @@
 
     <!-- Add Product Modal -->
     <div class="modal fade" id="add-product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Create New Product</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="productForm">
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label for="productImage" class="form-label">Product Image</label>
-              <input type="file" class="form-control" id="productImage">
-              <div id="productImageError" class="text-danger"></div>
-            </div>
-            <div class="col-md-6">
-              <label for="productName" class="form-label">Product Name</label>
-              <input type="text" class="form-control" id="productName" placeholder="Enter product name">
-              <div id="productNameError" class="text-danger"></div>
-            </div>
-            <div class="col-md-6">
-              <label for="productDescription" class="form-label">Description</label>
-              <input type="text" class="form-control" id="productDescription" placeholder="Enter description">
-              <div id="productDescriptionError" class="text-danger"></div>
-            </div>
-            <div class="col-md-6">
-              <label for="productPrice" class="form-label">Price</label>
-              <input type="number" class="form-control" id="productPrice" placeholder="Enter price">
-              <div id="productPriceError" class="text-danger"></div>
-            </div>
-            <div class="col-md-6">
-              <label for="productQuantity" class="form-label">QTY</label>
-              <input type="number" class="form-control" id="productQuantity" placeholder="Enter quantity">
-              <div id="productQuantityError" class="text-danger"></div>
-            </div>
-            <div class="col-md-6">
-              <label for="productCategory" class="form-label">Category</label>
-              <select class="form-select" id="productCategory">
-                <option selected>Choose...</option>
-                <option value="1">Frozen</option>
-                <option value="2">Chicken</option>
-                <option value="3">Grocery</option>
-              </select>
-              <div id="productCategoryError" class="text-danger"></div>
-            </div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Create New Product</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-dark" id="saveProductBtn">Save changes</button>
+          <div class="modal-body">
+            <form id="productForm">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="productImage" class="form-label">Product Image</label>
+                  <input type="file" class="form-control" id="productImage">
+                  <div id="productImageError" class="text-danger"></div>
+                </div>
+                <div class="col-md-6">
+                  <label for="productName" class="form-label">Product Name</label>
+                  <input type="text" class="form-control" id="productName" placeholder="Enter product name">
+                  <div id="productNameError" class="text-danger"></div>
+                </div>
+                <div class="col-md-6">
+                  <label for="productDescription" class="form-label">Description</label>
+                  <input type="text" class="form-control" id="productDescription" placeholder="Enter description">
+                  <div id="productDescriptionError" class="text-danger"></div>
+                </div>
+                <div class="col-md-6">
+                  <label for="productPrice" class="form-label">Price</label>
+                  <input type="number" class="form-control" id="productPrice" placeholder="Enter price">
+                  <div id="productPriceError" class="text-danger"></div>
+                </div>
+                <div class="col-md-6">
+                  <label for="productQuantity" class="form-label">QTY</label>
+                  <input type="number" class="form-control" id="productQuantity" placeholder="Enter quantity">
+                  <div id="productQuantityError" class="text-danger"></div>
+                </div>
+                <div class="col-md-6">
+                  <label for="productCategory" class="form-label">Category</label>
+                  <select class="form-select" id="productCategory">
+                    <option selected>Choose...</option>
+                    <option value="1">Frozen</option>
+                    <option value="2">Chicken</option>
+                    <option value="3">Grocery</option>
+                  </select>
+                  <div id="productCategoryError" class="text-danger"></div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-dark" id="saveProductBtn">Save changes</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+
+    <!-- Delete Product Modal -->
+    <div class="modal fade" id="delete-product" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <input type="hidden" name="" id="del-id"'>
+                    <h5>Are you sure you want to delete this product?</h5>
+                </div>
+                <div class="row g-3 p-3 pb-3">
+                  <div class="col-6">
+                      <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">No</button>
+                  </div>
+                  <div class="col-6">
+                      <button type="button" class="btn btn-dark w-100" onclick="delete_yes()" id="saveProductBtn">Yes</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <?php include 'footer.php';?>
   <script src="../static/js/add-product.js"></script>
