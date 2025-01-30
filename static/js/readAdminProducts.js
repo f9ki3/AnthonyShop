@@ -31,7 +31,7 @@ $(document).ready(function() {
                 <img src="../static/img/${product.image_path}" alt="${product.name}" class="rounded" width="70" height="60">
             </td>
             <td>${product.name}</td>
-            <td>${product.description}</td>
+            <td>${product.description.length > 30 ? product.description.substring(0, 30) + '...' : product.description}</td>
             <td>${product.price}</td>
             <td>${product.quantity}</td>
             <td>${product.category}</td>
@@ -119,7 +119,7 @@ function delete_yes() {
         success: function(response) {
             // Handle the server response (e.g., success or failure message)
             if (response === 'success') {
-                alert('Product deleted successfully!');
+               
                 // Optionally, remove the row from the table or reload the page
                 location.reload(); // Reload the page to reflect changes
             } else {
