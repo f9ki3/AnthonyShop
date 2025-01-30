@@ -64,6 +64,13 @@ $(document).ready(function() {
                             </div>
                         </div>
 
+                        <div class="d-flex flex-row gap-3">
+                            <div class="flex-fill">
+                                <label for="address" class="form-label">Grcash Reference no.</label>
+                                <input type="text" value="${response.data.gcash_reference}" id="address" class="form-control" disabled>
+                            </div>
+                        </div>
+
                         <!-- Payment Method -->
                         <div class="col-12">
                             <label class="form-label">Payment Method</label>
@@ -135,9 +142,51 @@ $(document).ready(function() {
 
             // Append cart items HTML to the transaction table
             $('#transaction-table').html(cartItemsHtml);
+            
         },
         error: function(xhr, status, error) {
             console.error("Error:", error);  // Handle errors if any
+        }
+    });
+});
+
+
+$(document).ready(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    
+    $.ajax({
+        url: `../model/getTransaction.php?id=${id}`,
+        method: 'GET',
+        contentType: 'application/json',
+        success: function(response) {
+            response = JSON.parse(response);
+            $('#order_hash').text(response.data.order_hash);
+            $('#order_date').text(response.data.order_date);
+            $('#customer_name').text(`${response.data.firstname} ${response.data.lastname}`);
+            $('#contact').text(response.data.contact);
+            $('#email').text(response.data.email);
+            $('#address').text(response.data.address);
+            $('#payment_type').text(response.data.payment_type === 'gcash' ? 'G-Cash' : 'Cash on Delivery');
+            $('#sub_total').text(`₱${response.data.subtotal}`);
+            $('#shipping').text(`₱${response.data.shipping_fee}`);
+            $('#amount_total').text(`₱${response.data.total}`);
+            
+            let cartItemsHtml = '';
+            JSON.parse(response.data.cart_items).forEach(item => {
+                cartItemsHtml += `
+                    <tr>
+                        <td><img style="height: 100px; width: 100px; object-fit: cover;" src="../img/${item.img}" alt="${item.name}"></td>
+                        <td>${item.name}<br>₱${item.price}</td>
+                        <td>${item.quantity}</td>
+                        <td>₱${item.total}</td>
+                    </tr>
+                `;
+            });
+            $('#transaction-table').html(cartItemsHtml);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error:", error);
         }
     });
 });
