@@ -91,7 +91,7 @@ $(document).ready(function() {
                     <div class="d-flex mt-3 justify-content-between">
                         <p class="mb-0">Subtotal</p>
                         <div class="d-flex align-items-center">
-                            <span class="text-uppercase fs-5">₱</span>
+                            <span class="text-uppercase fs-5"></span>
                             <p class="mb-0 fs-5" id="sub_total">${response.data.subtotal}</p>
                         </div>
                     </div>
@@ -99,7 +99,7 @@ $(document).ready(function() {
                     <div class="d-flex justify-content-between">
                         <p class="mb-0">Shipping Fee</p>
                         <div class="d-flex align-items-center">
-                            <span class="text-uppercase fs-5">₱</span>
+                            <span class="text-uppercase fs-5"></span>
                             <p id="shipping" class="mb-0 fs-5">${response.data.shipping_fee}</p>
                         </div>
                     </div>
@@ -107,7 +107,7 @@ $(document).ready(function() {
                     <div class="d-flex justify-content-between">
                         <strong class="fs-3">Total</strong>
                         <div class="d-flex align-items-center">
-                            <span class="text-uppercase fw-bolder fs-3">₱</span>
+                            <span class="text-uppercase fw-bolder fs-3"></span>
                             <p class="mb-0 fs-3 fw-bolder" id="amount_total">${response.data.total}</p>
                         </div>
                     </div>

@@ -18,7 +18,10 @@
                     <div id="cart-table-div" class="col-12 col-md-8">
                         <div class="d-flex justify-content-between align-items-center">
                             <h3>View Transaction</h3>
-                            <button onclick="printPage()" class="btn btn-sm btn-dark">Print Waybill</button>
+                            <button onclick="printPage()" class="btn btn-sm btn-dark">
+                                <i class="bi bi-printer"></i> Print Waybill
+                            </button>
+
                         </div>
 
                     <table class="table  mt-3">
