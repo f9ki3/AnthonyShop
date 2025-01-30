@@ -1,0 +1,18 @@
+.print-div{
+    display: none;
+}
+
+@media print{
+    .main{
+        display: none;
+    }
+    p{
+        padding: 0px;
+        margin: 0px;
+    }
+    .print-div{
+        display: block;
+    }
+    
+    
+}

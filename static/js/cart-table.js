@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const SHIPPING_FEE = 120; // Define the shipping fee
+    const SHIPPING_FEE = 0; // Define the shipping fee
 
     // Function to fetch cart from localStorage
     function getCartFromLocalStorage() {
