@@ -25,15 +25,22 @@
               </div>
               <div class="col-12 col-md-6 d-flex align-items-center gap-2">
                   <div class="input-group flex-grow-1">
-                      <input type="text" placeholder="Search product" class="form-control">
-                      <button class="btn border btn-dark">Search</button>
+                      <input type="text" id="search-input" placeholder="Search product" class="form-control">
+                      <button class="btn border btn-dark" id="search-btn">
+                          <i class="bi bi-search"></i> <!-- Search icon from Bootstrap Icons -->
+                          Search
+                      </button>
                   </div>
                   <div>
-                  <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#add-product">+Create</button>
+                      <button class="d-flex btn btn-dark" data-bs-toggle="modal" data-bs-target="#add-product">
+                          <i class="bi bi-plus"></i> <!-- Plus icon from Bootstrap Icons -->
+                          Create
+                      </button>
                   </div>
               </div>
-              
+
             </div>
+
             <table class="table table-hover mt-3">
               <thead>
                 <tr>
@@ -47,8 +54,10 @@
                 </tr>
               </thead>
               <tbody id="order-table">
+                <!-- Dynamically populated rows will go here -->
               </tbody>
             </table>
+
             <div>
               <button id="previous" class="btn btn-outline-dark" disabled>Previous</button>
               <button id="next" class="btn btn-outline-dark">Next</button>
@@ -122,5 +131,6 @@
 
     <?php include 'footer.php';?>
   <script src="../static/js/add-product.js"></script>
+  <script src="../static/js/readAdminProducts.js"></script>
   </body>
 </html>

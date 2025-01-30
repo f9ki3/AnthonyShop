@@ -176,7 +176,7 @@ $(document).ready(function() {
             JSON.parse(response.data.cart_items).forEach(item => {
                 cartItemsHtml += `
                     <tr>
-                        <td><img style="height: 100px; width: 100px; object-fit: cover;" src="../img/${item.img}" alt="${item.name}"></td>
+                        <td><img class="rounded" style="height: 100px; width: 100px; object-fit: cover;" src="../img/${item.img}" alt="${item.name}"></td>
                         <td>${item.name}<br>₱${item.price}</td>
                         <td>${item.quantity}</td>
                         <td>₱${item.total}</td>

@@ -14,15 +14,21 @@
         <div class="d-flex flex-column flex-grow-1">
             <div class="container p-3">
             <div class="row g-3">
-                            <!-- Cart Items -->
-                    <div id="cart-table-div" class="col-12 col-md-8">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h3>View Transaction</h3>
+                    <div class="d-flex justify-content-between align-items-center border-bottom pb-3">
+                        <h3>View Transaction</h3>
+                        <div>
+                            <a href="orders.php" class="btn rounded btn-sm btn-outline-dark">
+                                <i class="bi bi-arrow-return-left"></i> Back
+                            </a>
+
                             <button onclick="printPage()" class="btn btn-sm btn-dark">
                                 <i class="bi bi-printer"></i> Print Waybill
                             </button>
-
                         </div>
+                    </div>
+                    <!-- Checkout Section -->
+                    <div class="col-12 col-md-4" id="transaction-div" style="display: block;"></div>
+                    <div id="cart-table-div" class="col-12 col-md-8">
 
                     <table class="table  mt-3">
                         <thead>
@@ -39,8 +45,6 @@
                     </table>
                     </div>
                     
-                    <!-- Checkout Section -->
-                    <div class="col-12 col-md-4" id="transaction-div" style="display: block;"></div>
 
             </div>
             </div>

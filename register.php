@@ -38,7 +38,7 @@
         </div>
         <div class="col-6">
           <label for="contact" class="form-label">Contact</label>
-          <input type="tel" class="form-control" id="contact" placeholder="Enter your contact number">
+          <input type="number" class="form-control" id="contact" placeholder="Enter your contact number">
           <div class="invalid-feedback">Contact number is required.</div>
         </div>
       </div>
