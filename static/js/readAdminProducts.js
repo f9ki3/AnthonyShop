@@ -36,7 +36,7 @@ $(document).ready(function() {
             <td>${product.quantity}</td>
             <td>${product.category}</td>
             <td class="text-end">
-                <button class="btn btn-sm btn-outline-dark">
+                <button onclick="edit_btn(${product.id})" class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#edit-product">
                     <i class="bi bi-pencil"></i> Edit <!-- Pencil icon for edit -->
                 </button>
                 <button onclick="del_id(${product.id})" class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#delete-product">
@@ -128,6 +128,35 @@ function delete_yes() {
         },
         error: function() {
             alert('An error occurred while trying to delete the product.');
+        }
+    });
+}
+
+
+// Edit Modal
+function edit_btn(id) {
+    $.ajax({
+        url: `../model/getProduct.php?id=${id}`, // Endpoint where the delete action will be handled
+        type: 'POST', // HTTP method
+        data: {
+            id: id // Send the product ID as part of the request
+        },
+        success: function(response) {
+            // Extract the product data from the response
+            const product = response.data[0]; // Get the first product from the array
+
+            // Store product properties in variables
+            const productId = product.id;
+            const productName = product.name;
+            const productDescription = product.description;
+            const productPrice = product.price;
+            const productQuantity = product.quantity;
+            const productImagePath = product.image_path;
+            const productCategory = product.category;
+
+        },
+        error: function() {
+            alert('An error occurred while trying to fetch the product details.');
         }
     });
 }

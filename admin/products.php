@@ -153,6 +153,66 @@
     </div>
 
 
+    <div class="modal fade" id="edit-product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Product</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="productForm">
+            <div class="row g-3">
+              <div class="col-md-12 text-center">
+                <img id="productImagePreview" src="" class="img-fluid rounded" style="max-width: 150px; display: none;">
+              </div>
+              <div class="col-md-6">
+                <label for="productImage" class="form-label">Product Image</label>
+                <input type="file" class="form-control" id="productImage">
+                <div id="edit-productImageError" class="text-danger"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="productName" class="form-label">Product Name</label>
+                <input type="text" class="form-control" id="productName" placeholder="Enter product name">
+                <div id="productNameError" class="text-danger"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="productDescription" class="form-label">Description</label>
+                <input type="text" class="form-control" id="productDescription" placeholder="Enter description">
+                <div id="productDescriptionError" class="text-danger"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="productPrice" class="form-label">Price</label>
+                <input type="number" class="form-control" id="productPrice" placeholder="Enter price">
+                <div id="productPriceError" class="text-danger"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="productQuantity" class="form-label">QTY</label>
+                <input type="number" class="form-control" id="productQuantity" placeholder="Enter quantity">
+                <div id="productQuantityError" class="text-danger"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="productCategory" class="form-label">Category</label>
+                <select class="form-select" id="productCategory">
+                  <option selected>Choose...</option>
+                  <option value="1">Frozen</option>
+                  <option value="2">Chicken</option>
+                  <option value="3">Grocery</option>
+                </select>
+                <div id="productCategoryError" class="text-danger"></div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-dark" id="saveProductBtn">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
     <?php include 'footer.php';?>
   <script src="../static/js/add-product.js"></script>
   <script src="../static/js/readAdminProducts.js"></script>
