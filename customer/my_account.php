@@ -55,6 +55,38 @@
                         <input type="email" value="<?php echo $_SESSION['email']; ?>" id="email" class="form-control" disabled>
                       </div>
                     </div>
+                    
+                    <?php
+                    $selectedBarangay = isset($_SESSION['barangay']) ? $_SESSION['barangay'] : '';
+                    ?>
+
+                    <div class="mb-3 mt-3">
+                        <label for="barangaySelect" class="form-label">Barangay</label>
+                        <select class="form-select" disabled id="barangaySelect" name="barangay">
+                            <option disabled <?= empty($selectedBarangay) ? 'selected' : ''; ?>>Select Barangay</option>
+                            <option value="Agnaya" <?= ($selectedBarangay == 'Agnaya') ? 'selected' : ''; ?>>Agnaya</option>
+                            <option value="Bagong Silang" <?= ($selectedBarangay == 'Bagong Silang') ? 'selected' : ''; ?>>Bagong Silang</option>
+                            <option value="Banga 1st" <?= ($selectedBarangay == 'Banga 1st') ? 'selected' : ''; ?>>Banga 1st</option>
+                            <option value="Banga 2nd" <?= ($selectedBarangay == 'Banga 2nd') ? 'selected' : ''; ?>>Banga 2nd</option>
+                            <option value="Bintog" <?= ($selectedBarangay == 'Bintog') ? 'selected' : ''; ?>>Bintog</option>
+                            <option value="Bulihan" <?= ($selectedBarangay == 'Bulihan') ? 'selected' : ''; ?>>Bulihan</option>
+                            <option value="Culianin" <?= ($selectedBarangay == 'Culianin') ? 'selected' : ''; ?>>Culianin</option>
+                            <option value="Dampol" <?= ($selectedBarangay == 'Dampol') ? 'selected' : ''; ?>>Dampol</option>
+                            <option value="Lagundi" <?= ($selectedBarangay == 'Lagundi') ? 'selected' : ''; ?>>Lagundi</option>
+                            <option value="Lalangan" <?= ($selectedBarangay == 'Lalangan') ? 'selected' : ''; ?>>Lalangan</option>
+                            <option value="Lumang Bayan" <?= ($selectedBarangay == 'Lumang Bayan') ? 'selected' : ''; ?>>Lumang Bayan</option>
+                            <option value="Parulan" <?= ($selectedBarangay == 'Parulan') ? 'selected' : ''; ?>>Parulan</option>
+                            <option value="Poblacion" <?= ($selectedBarangay == 'Poblacion') ? 'selected' : ''; ?>>Poblacion</option>
+                            <option value="Rueda" <?= ($selectedBarangay == 'Rueda') ? 'selected' : ''; ?>>Rueda</option>
+                            <option value="San Jose" <?= ($selectedBarangay == 'San Jose') ? 'selected' : ''; ?>>San Jose</option>
+                            <option value="Santa Ines" <?= ($selectedBarangay == 'Santa Ines') ? 'selected' : ''; ?>>Santa Ines</option>
+                            <option value="Santo Niño" <?= ($selectedBarangay == 'Santo Niño') ? 'selected' : ''; ?>>Santo Niño</option>
+                            <option value="Sipat" <?= ($selectedBarangay == 'Sipat') ? 'selected' : ''; ?>>Sipat</option>
+                            <option value="Tabang" <?= ($selectedBarangay == 'Tabang') ? 'selected' : ''; ?>>Tabang</option>
+                        </select>
+                        <div class="invalid-feedback">Barangay is required.</div>
+                    </div>
+
 
                     <div class="d-flex mt-3 flex-row gap-3">
                       <div class="flex-fill">
@@ -62,6 +94,8 @@
                         <input type="text" value="<?php echo $_SESSION['address']; ?>" id="address" class="form-control" disabled>
                       </div>
                     </div>
+
+                    <p class="mt-3">Note: Shipping address is strictly limited to Plaridel only!</p>
 
                     <!-- Save and Cancel Buttons -->
                     <div id="edit-save-div" class="row mt-2 g-3" style="display: none;">

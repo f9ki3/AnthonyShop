@@ -1,6 +1,8 @@
 $(document).ready(function() {
     let currentPage = 1;
     let searchQuery = '';
+    let selectedSortType = 'id';  // Default sort type
+    let selectedSortOrder = 'desc'; // Default sort order
 
     function loadProducts() {
         $.ajax({
@@ -8,7 +10,9 @@ $(document).ready(function() {
             method: 'GET',
             data: {
                 page: currentPage,
-                q: searchQuery // Pass q as the search query
+                q: searchQuery, // Pass search query
+                sort_type: selectedSortType, // Send the selected sort type to the backend
+                sort_order: selectedSortOrder // Send the selected sort order to the backend
             },
             dataType: 'json',
             success: function(response) {
@@ -16,6 +20,10 @@ $(document).ready(function() {
                     let products = response.data;
                     let pagination = response.pagination;
                     let productRows = '';
+
+                    // Set the selected sort type and order in the dropdowns based on response
+                    $('#sortTypeProduct').val(response.sort_type || 'id');  // Fallback to 'id' if no sort type is returned
+                    $('#sortOrderProduct').val(response.sort_order || 'desc');  // Fallback to 'asc' if no sort order is returned
 
                     if (products.length === 0) {
                         productRows = `
@@ -37,15 +45,14 @@ $(document).ready(function() {
             <td>${product.category}</td>
             <td class="text-end">
                 <button onclick="edit_btn(${product.id})" class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#edit-product">
-                    <i class="bi bi-pencil"></i> Edit <!-- Pencil icon for edit -->
+                    <i class="bi bi-pencil"></i> Edit
                 </button>
                 <button onclick="del_id(${product.id})" class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#delete-product">
-                    <i class="bi bi-trash"></i> Delete <!-- Trash icon from Bootstrap Icons -->
+                    <i class="bi bi-trash"></i> Delete
                 </button>
             </td>
         </tr>
     `;
-
                         });
                     }
 
@@ -98,7 +105,23 @@ $(document).ready(function() {
         currentPage--;
         loadProducts();
     });
+
+    // Handle Sort type change
+    $('#sortTypeProduct').change(function() {
+        selectedSortType = $(this).val();
+        currentPage = 1;  // Reset to first page on sort change
+        loadProducts();
+    });
+
+    // Handle Sort order change
+    $('#sortOrderProduct').change(function() {
+        selectedSortOrder = $(this).val();
+        currentPage = 1;  // Reset to first page on sort order change
+        loadProducts();
+    });
 });
+
+
 
 
 // Delete product
@@ -153,10 +176,65 @@ function edit_btn(id) {
             const productQuantity = product.quantity;
             const productImagePath = product.image_path;
             const productCategory = product.category;
-
+            
+            $('#edit-productID').val(productId);
+            $('#edit-productPath').val(productImagePath);
+            $('#edit-productName').val(productName);
+            $('#edit-productDescription').val(productDescription);
+            $('#edit-productPrice').val(productPrice);
+            $('#edit-productQuantity').val(productQuantity);
+            
+            // Set the selected category
+            $('#edit-productCategory').val(productCategory).change();
         },
         error: function() {
             alert('An error occurred while trying to fetch the product details.');
         }
     });
 }
+function saveEditProduct() {
+    const productID = $('#edit-productID').val();
+    const productName = $('#edit-productName').val();
+    const productDescription = $('#edit-productDescription').val();
+    const productPrice = $('#edit-productPrice').val();
+    const productQuantity = $('#edit-productQuantity').val();
+    const productCategory = $('#edit-productCategory').val();
+    const productImgUpload = $('#edit-productImage')[0].files[0];  // Get the uploaded image file
+
+    // Create a FormData object to send the data, including the image if it exists
+    let formData = new FormData();
+    formData.append('productID', productID);
+    formData.append('productName', productName);
+    formData.append('productDescription', productDescription);
+    formData.append('productPrice', productPrice);
+    formData.append('productQuantity', productQuantity);
+    formData.append('productCategory', productCategory);
+
+    // Only append the image if it's selected
+    if (productImgUpload) {
+        formData.append('productImgUpload', productImgUpload);
+    }
+
+    // Send the data via AJAX to the PHP endpoint
+    $.ajax({
+        url: '../model/editSaveProduct.php', // Your PHP script that handles the update
+        type: 'POST',
+        data: formData,
+        contentType: false, // Let the browser set the content type
+        processData: false, // Prevent jQuery from processing the data
+        dataType: 'json',
+        success: function(response) {
+            console.log(response);
+            if (response.status === 'success') {
+                alert('Product updated successfully!');
+                // You can reload the page or update the UI as needed
+            } else {
+                alert('Error: ' + response.message);
+            }
+        },
+        error: function() {
+            alert('An error occurred while updating the product.');
+        }
+    });
+}
+

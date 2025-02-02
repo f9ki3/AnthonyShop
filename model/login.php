@@ -49,6 +49,9 @@ if ($result->num_rows > 0) {
         $_SESSION['lname'] = $user['lname'];
         $_SESSION['address'] = $user['address'];
         $_SESSION['contact'] = $user['contact'];
+        $_SESSION['barangay'] = $user['barangay'];
+        $_SESSION['province'] = $user['province'];
+        $_SESSION['municipal'] = $user['municipal'];
 
         // Send success response
         echo json_encode(['success' => true, 'message' => 'Login successful']);

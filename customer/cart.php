@@ -62,8 +62,12 @@
 
                   <div class="d-flex flex-row gap-3">
                     <div class="flex-fill">
-                      <label for="address" class="form-label">Complete Address</label>
-                      <input type="text" value="<?php echo $_SESSION['address']; ?>" id="address" class="form-control">
+                      <div class="d-flex justify-content-between">
+                        <label for="address" class="form-label">Complete Address</label>
+                        <a href="my_account.php">edit</a>
+                      </div>
+                      
+                      <input disabled type="text" value="<?php echo $_SESSION['province']; echo ", "; echo $_SESSION['municipal']; echo ", "; echo $_SESSION['barangay']; echo ", "; echo $_SESSION['address']; ?>" id="address" class="form-control">
                     </div>
                   </div>
 

@@ -17,8 +17,8 @@
     
   </div>
   <div class="form-floating">
-    <input type="email" class="form-control form-control-sm rounded-3 rounded-bottom-0" id="floatingEmail" placeholder="Email">
-    <label for="floatingEmail">Email address</label>
+    <input type="email" class="form-control form-control-sm rounded-3 rounded-bottom-0" id="floatingEmail" placeholder="users">
+    <label for="floatingEmail">Users</label>
   </div>
   <div class="form-floating">
     <input type="password" class="form-control form-control-sm rounded-3 rounded-top-0 border-top-0" id="floatingPassword" placeholder="Password">

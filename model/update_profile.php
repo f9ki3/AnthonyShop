@@ -13,20 +13,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $contact = isset($_POST['contact']) ? $_POST['contact'] : '';
     $email = isset($_POST['email']) ? $_POST['email'] : '';
     $address = isset($_POST['address']) ? $_POST['address'] : '';
+    $barangay = isset($_POST['barangay']) ? $_POST['barangay'] : '';
 
     // Validate the data (basic validation)
-    if (empty($fname) || empty($lname) || empty($contact) || empty($email) || empty($address)) {
+    if (empty($fname) || empty($lname) || empty($contact) || empty($email) || empty($address) || empty($barangay)) {
         // Return an error if any field is empty
-        echo json_encode(['status' => 'error', 'message' => 'All fields are required.']);
+        echo json_encode(['status' => 'error', 'message' => 'All fields are required, including barangay.']);
         exit;
     }
 
     // Prepare the SQL update statement
-    $sql = "UPDATE customer SET fname = ?, lname = ?, contact = ?, email = ?, address = ? WHERE id = ?";
+    $sql = "UPDATE customer SET fname = ?, lname = ?, contact = ?, email = ?, address = ?, barangay = ? WHERE id = ?";
 
     if ($stmt = $conn->prepare($sql)) {
         // Bind the parameters
-        $stmt->bind_param('sssssi', $fname, $lname, $contact, $email, $address, $user_id);
+        $stmt->bind_param('ssssssi', $fname, $lname, $contact, $email, $address, $barangay, $user_id);
 
         // Execute the statement
         if ($stmt->execute()) {
@@ -36,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['contact'] = $contact;
             $_SESSION['email'] = $email;
             $_SESSION['address'] = $address;
+            $_SESSION['barangay'] = $barangay;
 
             // Optionally, retrieve the updated username if needed
             $sql = "SELECT username FROM customer WHERE id = ?";

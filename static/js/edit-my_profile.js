@@ -1,39 +1,38 @@
 // Hide and show States
-
 $(document).ready(function () {
-    console.log("jQuery is ready!");
+  console.log("jQuery is ready!");
 
-    // Handle Edit Profile Button
-    $("#edit-profile").click(function () {
+  // Handle Edit Profile Button
+  $("#edit-profile").click(function () {
       console.log("Edit Profile button clicked");
 
       // Show Edit Profile section and hide Change Password section
       $("#edit-profile-div").fadeIn();
       $("#change-password-div").hide();
 
-      // Enable all profile input fields
-      $("#edit-profile-div input").prop("disabled", false);
+      // Enable all profile input fields and select element
+      $("#edit-profile-div input, #barangaySelect").prop("disabled", false);
 
       // Show Save and Cancel buttons for profile edit
       $("#edit-save-div").fadeIn();
 
       // Hide Save and Cancel buttons for password change
       $("#password-save").fadeOut();
-    });
+  });
 
-    // Handle Cancel Edit Button
-    $("#cancel-edit").click(function () {
+  // Handle Cancel Edit Button
+  $("#cancel-edit").click(function () {
       console.log("Cancel Edit button clicked");
 
-      // Disable all profile input fields
-      $("#edit-profile-div input").prop("disabled", true);
+      // Disable all profile input fields and select element
+      $("#edit-profile-div input, #barangaySelect").prop("disabled", true);
 
       // Hide Save and Cancel buttons
       $("#edit-save-div").fadeOut();
-    });
+  });
 
-    // Handle Change Password Button
-    $("#edit-password").click(function () {
+  // Handle Change Password Button
+  $("#edit-password").click(function () {
       console.log("Change Password button clicked");
 
       // Show Change Password section and hide Edit Profile section
@@ -48,10 +47,10 @@ $(document).ready(function () {
 
       // Hide Save and Cancel buttons for profile edit
       $("#edit-save-div").fadeOut();
-    });
+  });
 
-    // Handle Cancel Password Change
-    $("#password-cancel").click(function () {
+  // Handle Cancel Password Change
+  $("#password-cancel").click(function () {
       console.log("Cancel Password Change clicked");
 
       // Hide Change Password section
@@ -63,30 +62,44 @@ $(document).ready(function () {
 
       // Hide Save and Cancel buttons for password change
       $("#password-save").fadeOut();
-    });
   });
 
-// valdation for save profile
+  // Validation for enabling Save Profile button
   document.addEventListener("DOMContentLoaded", function () {
-    const inputs = document.querySelectorAll("#edit-profile-div input");
-    const saveButton = document.getElementById("save-profile");
+      const inputs = document.querySelectorAll("#edit-profile-div input");
+      const barangaySelect = document.getElementById("barangaySelect");
+      const saveButton = document.getElementById("save-profile");
 
-    function checkInputs() {
-        let isEmpty = false;
-        inputs.forEach(input => {
-            if (input.value.trim() === "") {
-                isEmpty = true;
-            }
-        });
-        saveButton.disabled = isEmpty;
-    }
+      function checkInputs() {
+          let isEmpty = false;
+          
+          // Check if any input is empty
+          inputs.forEach(input => {
+              if (input.value.trim() === "") {
+                  isEmpty = true;
+              }
+          });
 
-    // Enable input fields when editing
-    document.getElementById("edit-profile-div").addEventListener("input", checkInputs);
+          // Check if barangay is selected
+          if (barangaySelect.value === "Select Barangay" || barangaySelect.value === "") {
+              isEmpty = true;
+          }
 
-    // Call once to disable save button initially
-    checkInputs();
+          // Enable or disable the save button
+          saveButton.disabled = isEmpty;
+      }
+
+      // Listen for input changes
+      document.getElementById("edit-profile-div").addEventListener("input", checkInputs);
+      
+      // Listen for barangay selection changes
+      barangaySelect.addEventListener("change", checkInputs);
+
+      // Call once to disable save button initially
+      checkInputs();
+  });
 });
+
 
 
 // Validation for save password
@@ -197,6 +210,7 @@ function save_profile() {
     var contact = $('#contact').val();
     var email = $('#email').val();
     var address = $('#address').val();
+    var barangay = $('#barangaySelect').val();
   
     // Here you can add AJAX to send data to your server for saving
     // Example using jQuery AJAX:
@@ -209,12 +223,14 @@ function save_profile() {
         lname: lname,
         contact: contact,
         email: email,
-        address: address
+        address: address,
+        barangay: barangay
       },
       success: function(response) {
         // Handle the response after saving (e.g., show a success message)
         alert('Profile saved successfully!');
         console.log(response)
+        window.location.reload()
       },
       error: function(error) {
         // Handle errors (e.g., show an error message)
