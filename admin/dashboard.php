@@ -22,50 +22,85 @@
 
           <!-- Summary Stats -->
           <div class="row">
+            <!-- Today's Sales -->
             <div class="col-md-3">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Today's Sales</h5>
-                  <p id="todays-sales" class="card-text">Loading...</p>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h6 class="card-title text-muted mb-1">Today's Sales</h6>
+                                <p id="todays-sales" class="card-text fw-bold display-6">0</p>
+                            </div>
+                            <div class="col-3 d-flex align-items-center justify-content-center">
+                                <i class="bi text-muted bi-currency-peso fs-1 text-dark"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
+
+            <!-- Total Orders -->
             <div class="col-md-3">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Total Orders</h5>
-                  <p id="total-orders" class="card-text">Loading...</p>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h6 class="card-title text-muted mb-1">Total Orders</h6>
+                                <p id="total-orders" class="card-text fw-bold display-6">0</p>
+                            </div>
+                            <div class="col-3 d-flex align-items-center justify-content-center">
+                                <i class="bi text-muted bi-cart-check fs-1 text-dark"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
+
+            <!-- Total Customers -->
             <div class="col-md-3">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Total Customers</h5>
-                  <p id="total-customers" class="card-text">Loading...</p>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h6 class="card-title text-muted mb-1">Total Customers</h6>
+                                <p id="total-customers" class="card-text fw-bold display-6">0</p>
+                            </div>
+                            <div class="col-3 d-flex align-items-center justify-content-center">
+                                <i class="bi text-muted bi-people fs-1 text-dark"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
+
+            <!-- Total Products -->
             <div class="col-md-3">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Total Products</h5>
-                  <p id="total-products" class="card-text">Loading...</p>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h6 class="card-title text-muted mb-1">Total Products</h6>
+                                <p id="total-products" class="card-text fw-bold display-6">0</p>
+                            </div>
+                            <div class="col-3 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-box text-muted fs-1 text-dark"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
 
           <!-- Top and Least Products Sales -->
           <div class="row mt-4">
             <div class="col-md-6">
-              <h5>Top 5 Most Sold Products</h5>
+              <h5>Low Stock Products</h5>
               <ul id="most-sold-list" class="list-group">
                 <!-- Most sold products will be inserted here -->
               </ul>
             </div>
             <div class="col-md-6">
-              <h5>Top 5 Least Sold Products</h5>
+              <h5>High Stock Products</h5>
               <ul id="least-sold-list" class="list-group">
                 <!-- Least sold products will be inserted here -->
               </ul>
@@ -88,91 +123,9 @@
     </div>
 
     <?php include 'footer.php';?>
-
-    <!-- AJAX Script to load data and update the dashboard -->
-    <script>
-      $(document).ready(function(){
-        // Dummy data for most and least sold products
-        var dummyData = {
-          mostSold: [
-            { product_name: "Product A", total_sales: 150 },
-            { product_name: "Product B", total_sales: 120 },
-            { product_name: "Product C", total_sales: 110 },
-            { product_name: "Product D", total_sales: 90 },
-            { product_name: "Product E", total_sales: 80 }
-          ],
-          leastSold: [
-            { product_name: "Product F", total_sales: 10 },
-            { product_name: "Product G", total_sales: 12 },
-            { product_name: "Product H", total_sales: 15 },
-            { product_name: "Product I", total_sales: 18 },
-            { product_name: "Product J", total_sales: 20 }
-          ],
-          todaysSales: "$2,500",
-          totalOrders: "250",
-          totalCustomers: "150",
-          totalProducts: "20",
-          dailySalesData: [120, 200, 150, 170, 180],
-          dailySalesCategories: ["Mon", "Tue", "Wed", "Thu", "Fri"],
-          monthlySalesData: [2000, 1800, 2500, 2200, 2400],
-          monthlySalesCategories: ["Jan", "Feb", "Mar", "Apr", "May"]
-        };
-
-        // Update the dashboard stats
-        $('#todays-sales').text(dummyData.todaysSales);
-        $('#total-orders').text(dummyData.totalOrders);
-        $('#total-customers').text(dummyData.totalCustomers);
-        $('#total-products').text(dummyData.totalProducts);
-
-        // Populate the top 5 most sold products
-        var mostSoldList = '';
-        dummyData.mostSold.forEach(function(item) {
-          mostSoldList += `<li class="list-group-item">${item.product_name}: ${item.total_sales} units sold</li>`;
-        });
-        $('#most-sold-list').html(mostSoldList);
-
-        // Populate the top 5 least sold products
-        var leastSoldList = '';
-        dummyData.leastSold.forEach(function(item) {
-          leastSoldList += `<li class="list-group-item">${item.product_name}: ${item.total_sales} units sold</li>`;
-        });
-        $('#least-sold-list').html(leastSoldList);
-
-        // Set up Daily Sales Area Chart
-        var dailySalesOptions = {
-          chart: {
-            type: 'area',
-            height: 350
-          },
-          series: [{
-            name: 'Sales',
-            data: dummyData.dailySalesData
-          }],
-          xaxis: {
-            categories: dummyData.dailySalesCategories
-          }
-        };
-        var dailySalesChart = new ApexCharts(document.querySelector("#daily-sales-chart"), dailySalesOptions);
-        dailySalesChart.render();
-
-        // Set up Monthly Sales Bar Chart
-        var monthlySalesOptions = {
-          chart: {
-            type: 'bar',
-            height: 350
-          },
-          series: [{
-            name: 'Sales',
-            data: dummyData.monthlySalesData
-          }],
-          xaxis: {
-            categories: dummyData.monthlySalesCategories
-          }
-        };
-        var monthlySalesChart = new ApexCharts(document.querySelector("#monthly-sales-chart"), monthlySalesOptions);
-        monthlySalesChart.render();
-      });
-    </script>
+    <script src="../static/js/dashboard-count.js"></script>
+    <script src="../static/js/dashboard-stat.js"></script>
+    <script src="../static/js/dashboard-inv.js"></script>
 
   </body>
 </html>
