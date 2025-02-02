@@ -25,7 +25,7 @@
             <i class="bi fs-5 bi-bar-chart-line me-2"></i> Reports
         </a>
         <a href="/ADCF/admin/accounts.php" class="btn text-light text-start ms-3 me-3">
-            <i class="bi fs-5 bi-people me-2"></i> Accounts
+            <i class="bi fs-5 bi-people me-2"></i> Employee
         </a>
         <a href="/ADCF/admin/logout.php" class="btn text-light text-start ms-3 me-3">
             <i class="bi fs-5 bi-box-arrow-right me-2"></i> Logout

@@ -227,6 +227,7 @@ function saveEditProduct() {
             console.log(response);
             if (response.status === 'success') {
                 alert('Product updated successfully!');
+                window.location.reload()
                 // You can reload the page or update the UI as needed
             } else {
                 alert('Error: ' + response.message);
