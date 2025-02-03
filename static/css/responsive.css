@@ -85,6 +85,14 @@
     background-color: rgb(174, 22, 22);
 }
 
+.abstract-shape img {
+    width: 100%;
+    height: auto;
+    transition: border-radius 1.5s ease-in-out;
+    border-radius: 50% 30% 70% 40% / 40% 60% 30% 70%; /* Initial shape */
+}
+
+
 @media (max-width: 576px) {
     .navbar-responsive{
         display: none;
