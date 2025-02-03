@@ -45,7 +45,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-9">
-                                <h6 class="card-title text-muted mb-1">Total Orders</h6>
+                                <h6 class="card-title text-muted mb-1">Today's Orders</h6>
                                 <p id="total-orders" class="card-text fw-bold display-6">0</p>
                             </div>
                             <div class="col-3 d-flex align-items-center justify-content-center">

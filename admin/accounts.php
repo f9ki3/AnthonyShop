@@ -5,12 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Accounts</title>
     <?php include 'header.php'; ?>    
-
-    <!-- Include ApexCharts library -->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-    <!-- Include jQuery for AJAX -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <div class="d-flex flex-row">
@@ -30,13 +24,16 @@
                           <i class="bi bi-search"></i> Search
                       </button>
                   </div>
+                  
                   <button class="btn border d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#add-account">
                       <i class="bi bi-plus"></i> Create
                   </button>
+
                   <select class="form-select w-auto" id="sortTypeAccount">
                       <option selected value="id">Sort Type</option>
                       <option value="name">Name</option>
                       <option value="email">Email</option>
+                      <option value="address">Address</option>
                   </select>
 
                   <select class="form-select w-auto" id="sortOrderAccount">
@@ -47,17 +44,16 @@
 
               </div>
 
-
             </div>
 
             <table class="table table-hover mt-3">
               <thead>
                 <tr>
-                  <th scope="col" style="width: 10%;">Avatar</th>
                   <th scope="col" style="width: 20%;">Name</th>
                   <th scope="col" style="width: 20%;">Email</th>
-                  <th scope="col" style="width: 10%;">Role</th>
-                  <th scope="col" class="text-end" style="width: 30%;">Action</th>
+                  <th scope="col" style="width: 5%;">Contact</th>
+                  <th scope="col" style="width: 20%;">Address</th>
+                  <th scope="col" class="text-end" style="width: 40%;">Action</th>
                 </tr>
               </thead>
               <tbody id="account-table">
@@ -128,61 +124,68 @@
     </div>
 
     <!-- Edit Account Modal -->
-    <div class="modal fade" id="edit-account" tabindex="-1" aria-labelledby="editAccountModalLabel" aria-hidden="true">
+    <div class="modal fade" id="edit-employee" tabindex="-1" aria-labelledby="editAccountModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="editAccountModalLabel">Edit Account</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="editAccountForm">
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <input disabled type="hidden" class="form-control" id="edit-accountID">
-                </div>
-
-                <div class="col-md-6">
-                  <label for="edit-accountName" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="edit-accountName" placeholder="Enter account name">
-                  <div id="edit-accountNameError" class="text-danger"></div>
-                </div>
-
-                <div class="col-md-6">
-                  <label for="edit-accountEmail" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="edit-accountEmail" placeholder="Enter email">
-                  <div id="edit-accountEmailError" class="text-danger"></div>
-                </div>
-
-                <div class="col-md-6">
-                  <label for="edit-accountRole" class="form-label">Role</label>
-                  <select class="form-select" id="edit-accountRole">
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                    <option value="superadmin">Super Admin</option>
-                  </select>
-                  <div id="edit-accountRoleError" class="text-danger"></div>
-                </div>
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="editAccountModalLabel">Edit Account</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-            </form>
+              <div class="modal-body">
+                  <form id="edit-accountForm">
+                      <input type="hidden" name="" id="edit-employee-id">
+                      <div class="row g-3">
+                          <div class="col-md-6">
+                              <label for="edit-fname" class="form-label">First Name</label>
+                              <input type="text" class="form-control" id="edit-fname" placeholder="Enter first name">
+                              <div id="edit-fnameError" class="text-danger"></div>
+                          </div>
+                          <div class="col-md-6">
+                              <label for="edit-lname" class="form-label">Last Name</label>
+                              <input type="text" class="form-control" id="edit-lname" placeholder="Enter last name">
+                              <div id="edit-lnameError" class="text-danger"></div>
+                          </div>
+                          <div class="col-md-6">
+                              <label for="edit-email" class="form-label">Email</label>
+                              <input type="email" class="form-control" id="edit-email" placeholder="Enter email">
+                              <div id="edit-emailError" class="text-danger"></div>
+                          </div>
+                          <div class="col-md-6">
+                              <label for="edit-contact" class="form-label">Contact</label>
+                              <input type="text" class="form-control" id="edit-contact" placeholder="Enter contact number">
+                              <div id="edit-contactError" class="text-danger"></div>
+                          </div>
+                          <div class="col-md-6">
+                              <label for="edit-address" class="form-label">Address</label>
+                              <input type="text" class="form-control" id="edit-address" placeholder="Enter address">
+                              <div id="edit-addressError" class="text-danger"></div>
+                          </div>
+                          <div class="col-md-6">
+                              <label for="edit-username" class="form-label">Username</label>
+                              <input type="text" class="form-control" id="edit-username" placeholder="Enter username">
+                              <div id="edit-usernameError" class="text-danger"></div>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-dark" onclick="saveEditEmployee()">Save changes</button>
+              </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-dark" onclick="saveEditAccount()">Save changes</button>
-          </div>
-        </div>
       </div>
-    </div>
+  </div>
+
 
     <!-- Delete Account Modal -->
-    <div class="modal fade" id="delete-account" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+    <div class="modal fade" id="delete-employee" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <input type="hidden" name="" id="del-id">
+                    <input type="hidden" id="del-id-employee">
                     <h5>Are you sure you want to delete this account?</h5>
                 </div>
                 <div class="row g-3 p-3 pb-3">
@@ -190,14 +193,47 @@
                       <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">No</button>
                   </div>
                   <div class="col-6">
-                      <button type="button" class="btn btn-dark w-100" onclick="delete_yes()">Yes</button>
+                      <button type="button" class="btn btn-dark w-100" onclick="delete_employee_yes()">Yes</button>
                   </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal fade" id="change-password" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="changePasswordModalLabel">Change Password</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="change-password-form">
+                    <input type="text" name="id" id="edit-employee-id-update" hidden>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="new-password" class="form-label">New Password</label>
+                            <input type="password" class="form-control" id="new-password" placeholder="Enter new password" required>
+                            <div id="new-passwordError" class="text-danger"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="admin-password" class="form-label">Admin Password</label>
+                            <input type="password" class="form-control" id="admin-password" placeholder="Enter admin password" required>
+                            <div id="admin-passwordError" class="text-danger"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" onclick="saveChangePassword()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <?php include 'footer.php'; ?>
-    <script src="../static/js/add-employee.js"></script>
+<?php include 'footer.php'; ?>
+<script src="../static/js/add-employee.js"></script>
+<script src="../static/js/read-employee.js"></script>
+
   </body>
 </html>

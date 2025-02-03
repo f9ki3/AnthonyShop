@@ -83,6 +83,7 @@ $(document).ready(function () {
                     $("#accountForm")[0].reset(); // Reset form after successful submission
                     $(".form-control").removeClass("is-invalid"); // Remove validation classes
                     $("#add-account").modal("hide"); // Close modal
+                    window.location.reload()
                 },
                 error: function (xhr, status, error) {
                     alert("An error occurred: " + error);
