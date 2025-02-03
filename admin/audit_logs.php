@@ -24,10 +24,6 @@
                           <i class="bi bi-search"></i> Search
                       </button>
                   </div>
-                  
-                  <button class="btn border d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#add-account">
-                      <i class="bi bi-plus"></i> Create
-                  </button>
 
                   <select class="form-select w-auto" id="sortTypeAccount">
                       <option selected value="id">Sort Type</option>
