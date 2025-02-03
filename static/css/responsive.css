@@ -42,8 +42,9 @@
 .is-invalid {
     border-color: red;
 }
-
-
+.no-padding {
+    padding: 0 !important;
+}
 .image-container img {
     display: block;
     position: relative;

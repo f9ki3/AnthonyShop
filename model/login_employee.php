@@ -20,7 +20,7 @@ if (empty($email) || empty($password)) {
 }
 
 // Prepare the SQL statement to select only employees
-$sql = "SELECT * FROM admin WHERE email = ? AND role = 'admin'";
+$sql = "SELECT * FROM admin WHERE email = ? AND role = 'employee'";
 $stmt = $conn->prepare($sql);
 
 if (!$stmt) {

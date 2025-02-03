@@ -234,6 +234,7 @@ function saveChangePassword() {
                 } else if (responseData.status === 'success') {
                     console.log(responseData.message);
                     alert('Password changed successfully!');
+                    window.location.reload()
                 } else {
                     console.log('Unexpected response:', response);
                     alert('Unexpected response from the server.');

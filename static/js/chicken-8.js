@@ -14,8 +14,8 @@ $(document).ready(function () {
                     const chickenHtml = `
                     <div class="col-6 col-md-3">
                         <a href="product.php?id=${chicken.id}" style="text-decoration: none; color: black">
-                            <div>
-                                <div class="product-img mb-2 rounded">
+                            <div >
+                                <div class="product-img mb-2 border rounded">
                                     <img src="../static/img/${chicken.image_path}" alt="${chicken.name}" class="rounded img-fluid">
                                 </div>
                                 <div class="product-desc text-start">

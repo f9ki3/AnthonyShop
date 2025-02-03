@@ -32,7 +32,7 @@
                                 <p id="todays-sales" class="card-text fw-bold display-6">0</p>
                             </div>
                             <div class="col-3 d-flex align-items-center justify-content-center">
-                                <i class="bi text-muted bi-currency-peso fs-1 text-dark"></i>
+                                <i class="bi text-muted bi-graph-up-arrow fs-1 text-dark"></i>
                             </div>
                         </div>
                     </div>
