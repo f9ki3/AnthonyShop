@@ -1,4 +1,4 @@
-<?php include 'session_admin.php'?>
+<?php include 'session_employee.php'?>
 <div style="width: 280px; height: 100vh;" class="navbar-responsive shadow bg-dark sticky-top">
     <div class="d-flex pt-3 flex-row align-items-start">
         <img src="../static/img/logo.png" style="width: 70px; height: 60px" alt="">
@@ -9,27 +9,14 @@
     </div>
     <hr class="m-3 text-light">
     <div class="list-group">
-        <a href="index.php" class="btn text-light text-start ms-3 me-3">
-            <i class="bi fs-5 bi-house-door me-2"></i> Dashboard
-        </a>
-        <a href="products.php" class="btn text-light text-start ms-3 me-3">
-            <i class="bi fs-5 bi-box-seam me-2"></i> Products
-        </a>
         <a href="orders.php" class="btn text-light text-start ms-3 me-3">
             <i class="bi fs-5 bi-cart-check me-2"></i> Orders
         </a>
-        <a href="audit_logs.php" class="btn text-light text-start ms-3 me-3">
-            <i class="bi fs-5 bi-journal-text me-2"></i> Audit Logs
-        </a>
-        <a href="reports.php" class="btn text-light text-start ms-3 me-3">
-            <i class="bi fs-5 bi-bar-chart-line me-2"></i> Reports
-        </a>
-        <a href="accounts.php" class="btn text-light text-start ms-3 me-3">
-            <i class="bi fs-5 bi-people me-2"></i> Employee
-        </a>
+        <a href="my_account.php" class="btn text-light text-start ms-3 me-3"><span><i class="bi fs-5 bi-file-person me-2"></i></span> My Account</a>
         <a href="logout.php" class="btn text-light text-start ms-3 me-3">
             <i class="bi fs-5 bi-box-arrow-right me-2"></i> Logout
         </a>
+        
     </div>
 
 </div>

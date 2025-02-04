@@ -21,75 +21,71 @@
           <h3>Dashboard</h3>
 
           <!-- Summary Stats -->
-          <div class="row">
-            <!-- Today's Sales -->
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-9">
-                                <h6 class="card-title text-muted mb-1">Today's Sales</h6>
-                                <p id="todays-sales" class="card-text fw-bold display-6">0</p>
-                            </div>
-                            <div class="col-3 d-flex align-items-center justify-content-center">
-                                <i class="bi text-muted bi-currency-peso fs-1 text-dark"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <div class="row g-3"> <!-- Added gap between columns -->
+              <!-- Today's Sales -->
+              <div class="col-12 col-sm-6 col-md-3">
+                  <div class="card shadow-sm">
+                      <div class="card-body">
+                          <div class="d-flex align-items-center">
+                              <div class="flex-grow-1">
+                                  <h6 class="card-title text-muted mb-1">Today's Sales</h6>
+                                  <div class="d-flex align-items-center">
+                                      <p class="fw-bold display-6 mb-0">₱</p>
+                                      <p id="todays-sales" class="fw-bold display-6 mb-0">0</p>
+                                  </div>
+                              </div>
+                              <i class="bi bi-graph-up-arrow fs-1 text-dark"></i>
+                          </div>
+                      </div>
+                  </div>
+              </div>
 
-            <!-- Total Orders -->
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-9">
-                                <h6 class="card-title text-muted mb-1">Today's Orders</h6>
-                                <p id="total-orders" class="card-text fw-bold display-6">0</p>
-                            </div>
-                            <div class="col-3 d-flex align-items-center justify-content-center">
-                                <i class="bi text-muted bi-cart-check fs-1 text-dark"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+              <!-- Today's Orders -->
+              <div class="col-12 col-sm-6 col-md-3">
+                  <div class="card shadow-sm">
+                      <div class="card-body">
+                          <div class="d-flex align-items-center">
+                              <div class="flex-grow-1">
+                                  <h6 class="card-title text-muted mb-1">Today's Orders</h6>
+                                  <p id="total-orders" class="fw-bold display-6 mb-0">0</p>
+                              </div>
+                              <i class="bi bi-cart-check fs-1 text-dark"></i>
+                          </div>
+                      </div>
+                  </div>
+              </div>
 
-            <!-- Total Customers -->
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-9">
-                                <h6 class="card-title text-muted mb-1">Total Customers</h6>
-                                <p id="total-customers" class="card-text fw-bold display-6">0</p>
-                            </div>
-                            <div class="col-3 d-flex align-items-center justify-content-center">
-                                <i class="bi text-muted bi-people fs-1 text-dark"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+              <!-- Total Customers -->
+              <div class="col-12 col-sm-6 col-md-3">
+                  <div class="card shadow-sm">
+                      <div class="card-body">
+                          <div class="d-flex align-items-center">
+                              <div class="flex-grow-1">
+                                  <h6 class="card-title text-muted mb-1">Total Customers</h6>
+                                  <p id="total-customers" class="fw-bold display-6 mb-0">0</p>
+                              </div>
+                              <i class="bi bi-people fs-1 text-dark"></i>
+                          </div>
+                      </div>
+                  </div>
+              </div>
 
-            <!-- Total Products -->
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-9">
-                                <h6 class="card-title text-muted mb-1">Total Products</h6>
-                                <p id="total-products" class="card-text fw-bold display-6">0</p>
-                            </div>
-                            <div class="col-3 d-flex align-items-center justify-content-center">
-                                <i class="bi bi-box text-muted fs-1 text-dark"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+              <!-- Total Products -->
+              <div class="col-12 col-sm-6 col-md-3">
+                  <div class="card shadow-sm">
+                      <div class="card-body">
+                          <div class="d-flex align-items-center">
+                              <div class="flex-grow-1">
+                                  <h6 class="card-title text-muted mb-1">Total Products</h6>
+                                  <p id="total-products" class="fw-bold display-6 mb-0">0</p>
+                              </div>
+                              <i class="bi bi-box fs-1 text-dark"></i>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
 
           <!-- Top and Least Products Sales -->
           <div class="row mt-4">

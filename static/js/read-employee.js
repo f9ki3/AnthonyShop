@@ -21,44 +21,48 @@ $(document).ready(function() {
                 // Clear existing table rows
                 $('#account-table').empty();
 
-                // Populate table with new data
-                response.data.forEach(item => {
-                    $('#account-table').append(`
-                        <tr>
-                            <td class="pt-4 pb-4">${item.fname} ${item.lname}</td>
-                            <td class="pt-4 pb-4">${item.email}</td>
-                            <td class="pt-4 pb-4">${item.contact}</td>
-                            <td class="pt-4 pb-4">${item.address}</td>
-                            <td class="pt-4 pb-4 text-end">
-                                <button class="btn btn-sm btn-outline-dark edit-employee-btn me-2"
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#edit-employee"
-                                    data-id="${item.id}"
-                                    data-fname="${item.fname}"
-                                    data-lname="${item.lname}"
-                                    data-uname="${item.username}"
-                                    data-email="${item.email}"
-                                    data-contact="${item.contact}"
-                                    data-address="${item.address}">
-                                    <i class="bi bi-pencil"></i> Edit
-                                </button>
-                                <button class="btn btn-sm btn-outline-dark change-password-btn me-2" 
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#change-password" 
-                                    data-id="${item.id}">
-                                    <i class="bi bi-key"></i> Change
-                                </button>
-                                <button class="btn btn-sm btn-outline-dark delete-employee-btn" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#delete-employee" 
-                                    data-id="${item.id}">
-                                    <i class="bi bi-trash"></i> Delete
-                                </button>
-                            </td>
-                        </tr>
-                    `);
-                    
-                });
+                // Check if any data is returned
+                if (response.data.length === 0) {
+                    $('#account-table').append('<tr><td colspan="5" class="text-center">No results found</td></tr>');
+                } else {
+                    // Populate table with new data
+                    response.data.forEach(item => {
+                        $('#account-table').append(`
+                            <tr>
+                                <td class="pt-4 pb-4">${item.fname} ${item.lname}</td>
+                                <td class="pt-4 pb-4">${item.email}</td>
+                                <td class="pt-4 pb-4">${item.contact}</td>
+                                <td class="pt-4 pb-4">${item.address}</td>
+                                <td class="pt-4 pb-4 text-end">
+                                    <button class="btn btn-sm btn-outline-dark edit-employee-btn me-2"
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#edit-employee"
+                                        data-id="${item.id}"
+                                        data-fname="${item.fname}"
+                                        data-lname="${item.lname}"
+                                        data-uname="${item.username}"
+                                        data-email="${item.email}"
+                                        data-contact="${item.contact}"
+                                        data-address="${item.address}">
+                                        <i class="bi bi-pencil"></i> Edit
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-dark change-password-btn me-2" 
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#change-password" 
+                                        data-id="${item.id}">
+                                        <i class="bi bi-key"></i> Change
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-dark delete-employee-btn" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#delete-employee" 
+                                        data-id="${item.id}">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        `);
+                    });
+                }
 
                 // Ensure pagination exists before accessing total pages
                 if (response.pagination) {
@@ -90,9 +94,16 @@ $(document).ready(function() {
         }
     });
 
-    // Handle search input
+    // Handle search input (Click on search button)
     $('#search-btn').click(function() {
         loadData(1); // Reset to page 1 when search is performed
+    });
+
+    // Handle "Enter" key press to trigger search
+    $('#search-input').keypress(function(event) {
+        if (event.which == 13) {  // Enter key pressed
+            loadData(1); // Reset to page 1 when search is performed
+        }
     });
 
     // Handle sorting
@@ -141,7 +152,6 @@ $(document).ready(function() {
         // Store ID for update functionality later
         $('#edit-employee-id-update').val(id);
     });
-
 });
 
 
@@ -234,6 +244,7 @@ function saveChangePassword() {
                 } else if (responseData.status === 'success') {
                     console.log(responseData.message);
                     alert('Password changed successfully!');
+                    window.location.reload()
                 } else {
                     console.log('Unexpected response:', response);
                     alert('Unexpected response from the server.');

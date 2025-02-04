@@ -13,7 +13,7 @@ $(document).ready(function() {
             console.log("Element with id 'chicken-page' exists.");
 
             // Fetch data from the endpoint
-            $.get("../model/readChicken.php", function (response) {
+            $.get("model/readChicken.php", function (response) {
                 // Parse the JSON response (no need for JSON.parse if jQuery auto-parses it)
                 if (response.status === "success") {
                     const chickens = response.data; // Access the 'data' array
@@ -22,10 +22,10 @@ $(document).ready(function() {
                     chickens.forEach((chicken) => {
                         const chickenHtml = `
                         <div class="col-6 col-md-3">
-                            <a href="product.php?id=${chicken.id}" style="text-decoration: none; color: black">
+                            <a href="login.php" style="text-decoration: none; color: black">
                                 <div>
                                     <div class="product-img mb-2 border rounded">
-                                        <img src="../static/img/${chicken.image_path}" alt="${chicken.name}" class="rounded img-fluid">
+                                        <img src="static/img/${chicken.image_path}" alt="${chicken.name}" class="rounded img-fluid">
                                     </div>
                                     <div class="product-desc text-start">
                                         <p class="m-0 p-0">${chicken.name}</p>
@@ -33,9 +33,6 @@ $(document).ready(function() {
                                             <h5 class="fw-bold">PHP ${chicken.price}</h5>
                                             <p>Stock ${chicken.quantity}</p>
                                         </div>
-                                        <button class="btn btn-dark w-100 mb-2">
-                                            <i class="bi bi-bag-plus me-2"></i> Buy Now
-                                        </button>
                                     </div>
                                 </div>
                             </a>

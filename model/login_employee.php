@@ -20,7 +20,7 @@ if (empty($email) || empty($password)) {
 }
 
 // Prepare the SQL statement to select only employees
-$sql = "SELECT * FROM admin WHERE email = ? AND role = 'admin'";
+$sql = "SELECT * FROM admin WHERE email = ? AND role = 'employee'";
 $stmt = $conn->prepare($sql);
 
 if (!$stmt) {
@@ -47,6 +47,15 @@ if ($result->num_rows > 0) {
         $_SESSION['address'] = $user['address'];
         $_SESSION['contact'] = $user['contact'];
         $_SESSION['role'] = $user['role'];
+
+        // Log the login action in audit_logs
+        $user_id = $_SESSION['user_id'];
+        $user_agent = $_SESSION['fname'] . ' ' . $_SESSION['lname'];
+        $action = "Employee login successful";  // Action description for login
+        $logStmt = $conn->prepare("INSERT INTO audit_logs (user_id, action, user_agent) VALUES (?, ?, ?)");
+        $logStmt->bind_param("iss", $user_id, $action, $user_agent);
+        $logStmt->execute();
+        $logStmt->close();
 
         // Send a success response
         echo json_encode(['success' => true, 'message' => 'Login successful']);

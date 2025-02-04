@@ -1,8 +1,11 @@
-<?php
+<?php 
 session_start();
 include 'connection.php';
 
 header('Content-Type: application/json');
+
+$user_id = $_SESSION['user_id'];
+$user_agent = $_SESSION['fname'] . ' ' . $_SESSION['lname'];
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -45,6 +48,13 @@ if ($method === 'POST') {
     $stmt->bind_param("ss", $status, $orderHash);
 
     if ($stmt->execute()) {
+        // Log the update in audit_logs with the order hash included
+        $action = "Updated status to " . $status . " for order " . $orderHash;
+        $logStmt = $conn->prepare("INSERT INTO audit_logs (user_id, action, user_agent) VALUES (?, ?, ?)");
+        $logStmt->bind_param("iss", $user_id, $action, $user_agent);
+        $logStmt->execute();
+        $logStmt->close();
+
         echo json_encode(["success" => true, "message" => "Status updated successfully"]);
     } else {
         error_log("SQL Error: " . $stmt->error);  // Log the error for debugging purposes

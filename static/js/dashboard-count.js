@@ -8,7 +8,7 @@ $(document).ready(function() {
             duration: duration,
             easing: 'swing',
             step: function (now) {
-                $(this).text("₱ " + Math.ceil(now));
+                $(this).text( Math.ceil(now));
             }
         });
     }
